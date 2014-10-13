@@ -28,5 +28,11 @@ public class BoardTest {
     board.markPosition(0, "X");
     assertEquals(defaultAvailableMoves - 1, board.numberOfAvailableMoves());
   }
+
+  @Test
+  public void itReturnsAListOfAvailableMoves() {
+    List<Integer> moves = asList(0, 1, 2, 3, 4, 5, 6, 8);
+    board.markPosition(7, "X");
+    assertEquals(moves, board.listOfMoves());
   }
 }

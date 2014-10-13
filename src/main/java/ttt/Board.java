@@ -19,6 +19,15 @@ public class Board {
   public void markPosition(int position, String mark) {
     grid.set(position, mark);
   }
+
+  public List<Integer> listOfMoves() {
+    List<Integer> moves = new LinkedList<Integer>();
+
+    for(int i=0; i < grid.size(); i++) {
+      if(grid.get(i) == null) {
+        moves.add(i);
+      }
+    }
     return moves;
   }
 }
