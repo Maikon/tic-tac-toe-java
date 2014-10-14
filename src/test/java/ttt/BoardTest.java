@@ -57,4 +57,13 @@ public class BoardTest {
 
     assertEquals(rowOne, rows.get(0));
   }
+
+  @Test
+  public void itReturnsColumnWithMark() {
+    Board newBoard = board.newBoardWithMove(4, "X");
+    List<String> colTwo = asList(null, "X", null);
+    List cols = newBoard.getColumns();
+
+    assertEquals(colTwo, cols.get(1));
+  }
 }

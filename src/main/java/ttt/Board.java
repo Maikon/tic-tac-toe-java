@@ -40,10 +40,16 @@ public class Board {
     }
   }
 
-  public List getRows() {
-    List rowOne = asList(grid.get(0), grid.get(1), grid.get(2));
-    List rowTwo = asList(grid.get(3), grid.get(4), grid.get(5));
-    List rowThree = asList(grid.get(6), grid.get(7), grid.get(8));
-    return asList(rowOne, rowTwo, rowThree);
+  public List<List<String>> getRows() {
+    return asList(getLine(0, 1, 2), getLine(3, 4, 5), getLine(6, 7, 8));
   }
+
+  public List<List<String>> getColumns() {
+    return asList(getLine(0, 3, 6), getLine(1, 4, 7), getLine(2, 5, 8));
+  }
+
+  private List<String> getLine(int first, int second, int third) {
+    return asList(grid.get(first), grid.get(second), grid.get(third));
+  }
+
 }
