@@ -36,4 +36,25 @@ public class BoardTest {
     Board boardWithOneMove = board.newBoardWithMove(7, "X");
     assertEquals(moves, boardWithOneMove.listOfMoves());
   }
+
+  @Test
+  public void itReturnsTheRows() {
+    List<String> rowOne = asList(null, null, null);
+    List<String> rowTwo = asList(null, null, null);
+    List<String> rowThree = asList(null, null, null);
+    List rows = board.getRows();
+
+    assertEquals(rowOne, rows.get(0));
+    assertEquals(rowTwo, rows.get(1));
+    assertEquals(rowThree, rows.get(2));
+ }
+
+  @Test
+  public void itReturnsTheRowWithAMark() {
+    Board newBoard = board.newBoardWithMove(1, "X");
+    List<String> rowOne = asList(null, "X", null);
+    List rows = newBoard.getRows();
+
+    assertEquals(rowOne, rows.get(0));
+  }
 }

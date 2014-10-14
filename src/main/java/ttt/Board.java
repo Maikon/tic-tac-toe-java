@@ -1,9 +1,8 @@
 package ttt;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+
+import static java.util.Arrays.asList;
 
 public class Board {
   private final List<String> grid;
@@ -39,5 +38,12 @@ public class Board {
         moves.add(i);
       }
     }
+  }
+
+  public List getRows() {
+    List rowOne = asList(grid.get(0), grid.get(1), grid.get(2));
+    List rowTwo = asList(grid.get(3), grid.get(4), grid.get(5));
+    List rowThree = asList(grid.get(6), grid.get(7), grid.get(8));
+    return asList(rowOne, rowTwo, rowThree);
   }
 }
