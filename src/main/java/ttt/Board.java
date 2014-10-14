@@ -23,11 +23,15 @@ public class Board {
   public List<Integer> listOfMoves() {
     List<Integer> moves = new LinkedList<Integer>();
 
+    addAvailableMoves(moves);
+    return moves;
+  }
+
+  private void addAvailableMoves(List<Integer> moves) {
     for(int i=0; i < grid.size(); i++) {
       if(grid.get(i) == null) {
         moves.add(i);
       }
     }
-    return moves;
   }
 }
