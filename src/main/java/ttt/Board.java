@@ -40,6 +40,24 @@ public class Board {
     }
   }
 
+  public boolean hasWinner() {
+    List<List<String>> combos = getCombinations();
+    for (List<String> combo : combos) {
+      if(hasWinner(combo)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private boolean hasWinner(List<String> combo) {
+    String mark = combo.get(0);
+    if (mark == null) {
+      return false;
+    }
+    return combo.stream().allMatch(m -> m != null && m.equals(mark));
+  }
+
   public List<List<String>> getCombinations() {
     List<List<String>> combos = new ArrayList<>();
     combos.addAll(getRows());

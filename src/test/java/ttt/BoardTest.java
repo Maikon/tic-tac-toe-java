@@ -43,4 +43,15 @@ public class BoardTest {
 
     assertEquals(8, combinations.size());
   }
+
+  @Test
+  public void itReturnsFalseIfBoardDoesNotHaveWinner() {
+    assertEquals(false, board.hasWinner());
+  }
+
+  @Test
+  public void itReturnsTrueIfBoardHasWinner() {
+    Board board = new Board(asList("X", "X", "X", null, null, null, null, null, null));
+    assertEquals(true, board.hasWinner());
+  }
 }
