@@ -66,4 +66,13 @@ public class BoardTest {
 
     assertEquals(colTwo, cols.get(1));
   }
+
+  @Test
+  public void itReturnsDiagonalWithMark() {
+    Board newBoard = board.newBoardWithMove(8, "X");
+    List<String> diagonalTwo = asList(null, null, "X");
+    List<List<String>> diagonals = newBoard.getDiagonals();
+
+    assertEquals(diagonalTwo, diagonals.get(0));
+  }
 }

@@ -41,15 +41,23 @@ public class Board {
   }
 
   public List<List<String>> getRows() {
-    return asList(getLine(0, 1, 2), getLine(3, 4, 5), getLine(6, 7, 8));
+    return asList(getLine(0, 1, 2),
+                  getLine(3, 4, 5),
+                  getLine(6, 7, 8));
   }
 
   public List<List<String>> getColumns() {
-    return asList(getLine(0, 3, 6), getLine(1, 4, 7), getLine(2, 5, 8));
+    return asList(getLine(0, 3, 6),
+                  getLine(1, 4, 7),
+                  getLine(2, 5, 8));
+  }
+
+  public List<List<String>> getDiagonals() {
+    return asList(getLine(0, 4, 8),
+                  getLine(2, 4, 6));
   }
 
   private List<String> getLine(int first, int second, int third) {
     return asList(grid.get(first), grid.get(second), grid.get(third));
   }
-
 }
