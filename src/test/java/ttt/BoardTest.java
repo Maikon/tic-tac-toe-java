@@ -38,33 +38,6 @@ public class BoardTest {
   }
 
   @Test
-  public void itReturnsTheRowWithAMark() {
-    Board newBoard = board.newBoardWithMove(1, "X");
-    List<String> rowOne = asList(null, "X", null);
-    List<List<String>> rows = newBoard.getRows();
-
-    assertEquals(rowOne, rows.get(0));
-  }
-
-  @Test
-  public void itReturnsColumnWithMark() {
-    Board newBoard = board.newBoardWithMove(4, "X");
-    List<String> colTwo = asList(null, "X", null);
-    List<List<String>> cols = newBoard.getColumns();
-
-    assertEquals(colTwo, cols.get(1));
-  }
-
-  @Test
-  public void itReturnsDiagonalWithMark() {
-    Board newBoard = board.newBoardWithMove(8, "X");
-    List<String> diagonalTwo = asList(null, null, "X");
-    List<List<String>> diagonals = newBoard.getDiagonals();
-
-    assertEquals(diagonalTwo, diagonals.get(0));
-  }
-
-  @Test
   public void itReturnsAllCombinations() {
     List<List<String>> combinations = board.getCombinations();
 

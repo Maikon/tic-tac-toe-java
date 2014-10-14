@@ -48,19 +48,19 @@ public class Board {
     return combos;
   }
 
-  public List<List<String>> getRows() {
+  private List<List<String>> getRows() {
     return asList(getLine(0, 1, 2),
                   getLine(3, 4, 5),
                   getLine(6, 7, 8));
   }
 
-  public List<List<String>> getColumns() {
+  private List<List<String>> getColumns() {
     return asList(getLine(0, 3, 6),
                   getLine(1, 4, 7),
                   getLine(2, 5, 8));
   }
 
-  public List<List<String>> getDiagonals() {
+  private List<List<String>> getDiagonals() {
     return asList(getLine(0, 4, 8),
                   getLine(2, 4, 6));
   }
