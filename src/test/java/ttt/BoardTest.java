@@ -24,15 +24,16 @@ public class BoardTest {
   }
 
   @Test
-  public void itMarksAPositionOnTheGrid() {
-    board.markPosition(0, "X");
-    assertEquals(defaultAvailableMoves - 1, board.numberOfAvailableMoves());
+  public void itReturnsNewBoardWithMarkedMoves() {
+    Board boardWithOneMove = board.newBoardWithMove(7, "X");
+    Board boardWithTwoMoves = boardWithOneMove.newBoardWithMove(8, "X");
+    assertEquals(defaultAvailableMoves - 2, boardWithTwoMoves.numberOfAvailableMoves());
   }
 
   @Test
   public void itReturnsAListOfAvailableMoves() {
     List<Integer> moves = asList(0, 1, 2, 3, 4, 5, 6, 8);
-    board.markPosition(7, "X");
-    assertEquals(moves, board.listOfMoves());
+    Board boardWithOneMove = board.newBoardWithMove(7, "X");
+    assertEquals(moves, boardWithOneMove.listOfMoves());
   }
 }

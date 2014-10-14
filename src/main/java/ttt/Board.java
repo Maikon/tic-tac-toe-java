@@ -6,18 +6,24 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Board {
-  private List<String> grid;
+  private final List<String> grid;
 
   public Board() {
-    grid = new ArrayList<String>(Collections.<String>nCopies(9, null));
+    this(Collections.<String>nCopies(9, null));
+  }
+
+  public Board(List<String> grid) {
+    this.grid = grid;
   }
 
   public int numberOfAvailableMoves() {
     return listOfMoves().size();
   }
 
-  public void markPosition(int position, String mark) {
-    grid.set(position, mark);
+  public Board newBoardWithMove(int position, String mark) {
+    List<String> newGrid = new ArrayList<String>(grid);
+    newGrid.set(position, mark);
+    return new Board(newGrid);
   }
 
   public List<Integer> listOfMoves() {
