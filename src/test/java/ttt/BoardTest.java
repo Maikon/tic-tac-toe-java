@@ -38,22 +38,10 @@ public class BoardTest {
   }
 
   @Test
-  public void itReturnsTheRows() {
-    List<String> rowOne = asList(null, null, null);
-    List<String> rowTwo = asList(null, null, null);
-    List<String> rowThree = asList(null, null, null);
-    List rows = board.getRows();
-
-    assertEquals(rowOne, rows.get(0));
-    assertEquals(rowTwo, rows.get(1));
-    assertEquals(rowThree, rows.get(2));
- }
-
-  @Test
   public void itReturnsTheRowWithAMark() {
     Board newBoard = board.newBoardWithMove(1, "X");
     List<String> rowOne = asList(null, "X", null);
-    List rows = newBoard.getRows();
+    List<List<String>> rows = newBoard.getRows();
 
     assertEquals(rowOne, rows.get(0));
   }
@@ -62,7 +50,7 @@ public class BoardTest {
   public void itReturnsColumnWithMark() {
     Board newBoard = board.newBoardWithMove(4, "X");
     List<String> colTwo = asList(null, "X", null);
-    List cols = newBoard.getColumns();
+    List<List<String>> cols = newBoard.getColumns();
 
     assertEquals(colTwo, cols.get(1));
   }

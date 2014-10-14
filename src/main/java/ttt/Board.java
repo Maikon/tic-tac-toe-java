@@ -20,13 +20,13 @@ public class Board {
   }
 
   public Board newBoardWithMove(int position, String mark) {
-    List<String> newGrid = new ArrayList<String>(grid);
+    List<String> newGrid = new ArrayList<>(grid);
     newGrid.set(position, mark);
     return new Board(newGrid);
   }
 
   public List<Integer> listOfMoves() {
-    List<Integer> moves = new LinkedList<Integer>();
+    List<Integer> moves = new LinkedList<>();
 
     addAvailableMoves(moves);
     return moves;
