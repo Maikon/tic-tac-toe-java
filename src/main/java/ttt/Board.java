@@ -40,6 +40,14 @@ public class Board {
     }
   }
 
+  public List<List<String>> getCombinations() {
+    List<List<String>> combos = new ArrayList<>();
+    combos.addAll(getRows());
+    combos.addAll(getColumns());
+    combos.addAll(getDiagonals());
+    return combos;
+  }
+
   public List<List<String>> getRows() {
     return asList(getLine(0, 1, 2),
                   getLine(3, 4, 5),

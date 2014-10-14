@@ -63,4 +63,11 @@ public class BoardTest {
 
     assertEquals(diagonalTwo, diagonals.get(0));
   }
+
+  @Test
+  public void itReturnsAllCombinations() {
+    List<List<String>> combinations = board.getCombinations();
+
+    assertEquals(8, combinations.size());
+  }
 }
