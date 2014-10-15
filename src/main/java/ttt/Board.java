@@ -47,6 +47,9 @@ public class Board {
 
   public Board newBoardWithMove(int position, String mark) {
     List<String> newGrid = new ArrayList<>(grid);
+    if (!listOfMoves().contains(position)) {
+      throw new InvalidMoveException();
+    }
     newGrid.set(position, mark);
     return new Board(newGrid);
   }

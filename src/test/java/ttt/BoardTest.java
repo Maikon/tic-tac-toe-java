@@ -96,4 +96,10 @@ public class BoardTest {
     Board boardWithTwoMoves = new Board(asList("X", "O", "", "", "", "", "", "", ""));
     assertEquals("O", boardWithTwoMoves.lastMoveMark());
   }
+
+  @Test(expected = InvalidMoveException.class)
+  public void itRaisesAnExceptionForAnInvalidMove() {
+    Board boardWithMove = board.newBoardWithMove(0, "X");
+    boardWithMove.newBoardWithMove(0, "O");
+  }
 }
