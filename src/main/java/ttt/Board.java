@@ -15,19 +15,20 @@ public class Board {
     this.grid = grid;
   }
 
+  public String currentMark() {
+    return totalAvailableMovesIsEven() ? "O" : "X";
+  }
+
+  private boolean totalAvailableMovesIsEven() {
+    return numberOfAvailableMoves() % 2 == 0;
+  }
+
   public int numberOfAvailableMoves() {
     return listOfMoves().size();
   }
 
-  public Board newBoardWithMove(int position, String mark) {
-    List<String> newGrid = new ArrayList<>(grid);
-    newGrid.set(position, mark);
-    return new Board(newGrid);
-  }
-
   public List<Integer> listOfMoves() {
     List<Integer> moves = new LinkedList<>();
-
     addAvailableMoves(moves);
     return moves;
   }
@@ -38,6 +39,12 @@ public class Board {
         moves.add(i);
       }
     }
+  }
+
+  public Board newBoardWithMove(int position, String mark) {
+    List<String> newGrid = new ArrayList<>(grid);
+    newGrid.set(position, mark);
+    return new Board(newGrid);
   }
 
   public boolean hasWinner() {

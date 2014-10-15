@@ -79,4 +79,15 @@ public class BoardTest {
     assertEquals(true, boardWithDraw.isOver());
     assertEquals(true, boardWithWin.isOver());
   }
+
+  @Test
+  public void setsCurrentMarkToXIfBoardMovesIsOdd() {
+    assertEquals("X", board.currentMark());
+  }
+
+  @Test
+  public void setsCurrentMarkToOIfBoardMovesIsEven() {
+    Board boardWithMove = board.newBoardWithMove(0, "X");
+    assertEquals("O", boardWithMove.currentMark());
+  }
 }
