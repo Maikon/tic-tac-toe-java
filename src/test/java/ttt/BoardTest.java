@@ -51,7 +51,7 @@ public class BoardTest {
 
   @Test
   public void itReturnsTrueIfBoardHasWinner() {
-    Board board = new Board(asList("X", "X", "X", null, null, null, null, null, null));
+    Board board = new Board(asList("X", "X", "X", "", "", "", "", "", ""));
     assertEquals(true, board.hasWinner());
   }
 }
