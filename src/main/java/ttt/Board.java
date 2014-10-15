@@ -1,5 +1,7 @@
 package ttt;
 
+import ttt.Exceptions.InvalidMoveException;
+
 import java.util.*;
 
 import static java.util.Arrays.asList;

@@ -2,6 +2,7 @@ package ttt;
 
 import org.junit.Before;
 import org.junit.Test;
+import ttt.Exceptions.InvalidMoveException;
 
 import java.util.List;
 
