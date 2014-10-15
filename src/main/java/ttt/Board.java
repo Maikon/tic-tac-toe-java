@@ -41,8 +41,7 @@ public class Board {
   }
 
   public boolean hasWinner() {
-    List<Line> combos = getCombinations();
-    for (Line combo : combos) {
+    for (Line combo : getCombinations()) {
       if(combo.hasWinner()) {
         return true;
       }
@@ -51,8 +50,7 @@ public class Board {
   }
 
   public boolean hasDraw() {
-    List<Line> combos = getCombinations();
-    for (Line combo : combos) {
+    for (Line combo : getCombinations()) {
       if(combo.hasDraw()) {
         return true;
       }
