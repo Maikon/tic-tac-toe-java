@@ -14,9 +14,14 @@ public class Line {
   }
 
   public boolean hasWinner() {
-    if(first.isEmpty() || second.isEmpty() || third.isEmpty()) {
-      return false;
-    }
+    return positionsAreNotEmpty() && positionsHaveSameMark();
+  }
+
+  private boolean positionsHaveSameMark() {
     return (first.equals(second) && second.equals(third));
+  }
+
+  private boolean positionsAreNotEmpty() {
+    return !(first.isEmpty() || second.isEmpty() || third.isEmpty());
   }
 }
