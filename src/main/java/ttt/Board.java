@@ -58,6 +58,10 @@ public class Board {
     return false;
   }
 
+  public boolean isOver() {
+    return hasDraw() || hasWinner();
+  }
+
   public List<Line> getCombinations() {
     List<Line> combos = new ArrayList<>();
     combos.addAll(getRows());

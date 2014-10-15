@@ -57,7 +57,6 @@ public class BoardTest {
 
   @Test
   public void itReturnsFalseIfNotADraw() {
-    Board board = new Board();
     assertEquals(false, board.hasDraw());
   }
 
@@ -65,5 +64,19 @@ public class BoardTest {
   public void itReturnsTrueIfADraw() {
     Board board = new Board(asList("X", "O", "X", "O", "O", "X", "O", "X", "O"));
     assertEquals(true, board.hasDraw());
+  }
+
+  @Test
+  public void itReturnsFalseIfBoardIsNotInEndState() {
+    assertEquals(false, board.isOver());
+  }
+
+  @Test
+  public void itReturnsFalseIfBoardIsInEndState() {
+    Board boardWithDraw = new Board(asList("X", "O", "X", "O", "O", "X", "O", "X", "O"));
+    Board boardWithWin = new Board(asList("X", "X", "X", "", "", "", "", "", ""));
+
+    assertEquals(true, boardWithDraw.isOver());
+    assertEquals(true, boardWithWin.isOver());
   }
 }
