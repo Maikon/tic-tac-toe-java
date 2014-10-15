@@ -17,8 +17,12 @@ public class Line {
     return positionsAreNotEmpty() && positionsHaveSameMark();
   }
 
+  public boolean hasDraw() {
+    return positionsAreNotEmpty() && !positionsHaveSameMark();
+  }
+
   private boolean positionsHaveSameMark() {
-    return (first.equals(second) && second.equals(third));
+    return first.equals(second) && second.equals(third);
   }
 
   private boolean positionsAreNotEmpty() {

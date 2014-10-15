@@ -50,6 +50,16 @@ public class Board {
     return false;
   }
 
+  public boolean hasDraw() {
+    List<Line> combos = getCombinations();
+    for (Line combo : combos) {
+      if(combo.hasDraw()) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public List<Line> getCombinations() {
     List<Line> combos = new ArrayList<>();
     combos.addAll(getRows());

@@ -54,4 +54,16 @@ public class BoardTest {
     Board board = new Board(asList("X", "X", "X", "", "", "", "", "", ""));
     assertEquals(true, board.hasWinner());
   }
+
+  @Test
+  public void itReturnsFalseIfNotADraw() {
+    Board board = new Board();
+    assertEquals(false, board.hasDraw());
+  }
+
+  @Test
+  public void itReturnsTrueIfADraw() {
+    Board board = new Board(asList("X", "O", "X", "O", "O", "X", "O", "X", "O"));
+    assertEquals(true, board.hasDraw());
+  }
 }
