@@ -81,13 +81,19 @@ public class BoardTest {
   }
 
   @Test
-  public void setsCurrentMarkToXIfBoardMovesIsOdd() {
+  public void itReturnsCurrentMarkWhenBoardMovesIsOdd() {
     assertEquals("X", board.currentMark());
   }
 
   @Test
-  public void setsCurrentMarkToOIfBoardMovesIsEven() {
+  public void itReturnsCurrentMarkWhenBoardMovesIsEven() {
     Board boardWithMove = board.newBoardWithMove(0, "X");
     assertEquals("O", boardWithMove.currentMark());
+  }
+
+  @Test
+  public void itReturnsMarkOfLastMoveMade() {
+    Board boardWithTwoMoves = new Board(asList("X", "O", "", "", "", "", "", "", ""));
+    assertEquals("O", boardWithTwoMoves.lastMoveMark());
   }
 }

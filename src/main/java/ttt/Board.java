@@ -15,6 +15,10 @@ public class Board {
     this.grid = grid;
   }
 
+  public String lastMoveMark() {
+    return currentMark().equals("X") ? "O" : "X";
+  }
+
   public String currentMark() {
     return totalAvailableMovesIsEven() ? "O" : "X";
   }
