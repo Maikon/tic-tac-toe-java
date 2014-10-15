@@ -8,7 +8,7 @@ public class Board {
   private final List<String> grid;
 
   public Board() {
-    this(Collections.<String>nCopies(9, null));
+    this(Collections.nCopies(9, ""));
   }
 
   public Board(List<String> grid) {
@@ -34,56 +34,49 @@ public class Board {
 
   private void addAvailableMoves(List<Integer> moves) {
     for(int i=0; i < grid.size(); i++) {
-      if(grid.get(i) == null) {
+      if(grid.get(i).equals("")) {
         moves.add(i);
       }
     }
   }
 
   public boolean hasWinner() {
-    List<List<String>> combos = getCombinations();
-    for (List<String> combo : combos) {
-      if(hasWinner(combo)) {
+    List<Line> combos = getCombinations();
+    for (Line combo : combos) {
+      if(combo.hasWinner()) {
         return true;
       }
     }
     return false;
   }
 
-  private boolean hasWinner(List<String> combo) {
-    String mark = combo.get(0);
-    if (mark == null) {
-      return false;
-    }
-    return combo.stream().allMatch(m -> m != null && m.equals(mark));
-  }
-
-  public List<List<String>> getCombinations() {
-    List<List<String>> combos = new ArrayList<>();
+  public List<Line> getCombinations() {
+    List<Line> combos = new ArrayList<>();
     combos.addAll(getRows());
     combos.addAll(getColumns());
     combos.addAll(getDiagonals());
     return combos;
   }
 
-  private List<List<String>> getRows() {
+  private List<Line> getRows() {
     return asList(getLine(0, 1, 2),
                   getLine(3, 4, 5),
                   getLine(6, 7, 8));
   }
 
-  private List<List<String>> getColumns() {
+  private List<Line> getColumns() {
     return asList(getLine(0, 3, 6),
                   getLine(1, 4, 7),
                   getLine(2, 5, 8));
   }
 
-  private List<List<String>> getDiagonals() {
+  private List<Line> getDiagonals() {
     return asList(getLine(0, 4, 8),
                   getLine(2, 4, 6));
   }
 
-  private List<String> getLine(int first, int second, int third) {
-    return asList(grid.get(first), grid.get(second), grid.get(third));
+  private Line getLine(int first, int second, int third) {
+    List<String> positions = asList(grid.get(first), grid.get(second), grid.get(third));
+    return new Line(positions);
   }
 }

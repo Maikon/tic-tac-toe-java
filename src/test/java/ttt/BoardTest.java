@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class BoardTest {
 
@@ -39,7 +39,7 @@ public class BoardTest {
 
   @Test
   public void itReturnsAllCombinations() {
-    List<List<String>> combinations = board.getCombinations();
+    List<Line> combinations = board.getCombinations();
 
     assertEquals(8, combinations.size());
   }
