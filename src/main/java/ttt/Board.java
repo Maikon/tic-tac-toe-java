@@ -15,6 +15,23 @@ public class Board {
     this.grid = grid;
   }
 
+  public Board newBoardWithMove(int position, String mark) {
+    List<String> grid = makeMove(position, mark);
+    return new Board(grid);
+  }
+
+  private List<String> makeMove(int position, String mark) {
+    List<String> newGrid = new ArrayList<>(grid);
+    if (invalidMove(position)) {
+      throw new InvalidMoveException();
+    }
+    newGrid.set(position, mark);
+    return newGrid;
+  }
+
+  private boolean invalidMove(int position) {
+    return !listOfMoves().contains(position);
+  }
   public String lastMoveMark() {
     return currentMark().equals("X") ? "O" : "X";
   }
@@ -43,15 +60,6 @@ public class Board {
         moves.add(i);
       }
     }
-  }
-
-  public Board newBoardWithMove(int position, String mark) {
-    List<String> newGrid = new ArrayList<>(grid);
-    if (!listOfMoves().contains(position)) {
-      throw new InvalidMoveException();
-    }
-    newGrid.set(position, mark);
-    return new Board(newGrid);
   }
 
   public boolean hasWinner() {
