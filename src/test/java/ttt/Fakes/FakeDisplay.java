@@ -16,4 +16,8 @@ public class FakeDisplay implements Display {
   public int getMove() {
     return move;
   }
+
+  @Override
+  public void greetPlayers() {
+  }
 }
