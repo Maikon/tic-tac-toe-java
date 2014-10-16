@@ -1,19 +1,19 @@
 package ttt;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlayerFactory {
-  private HumanPlayer playerOne;
-  private HumanPlayer playerTwo;
+  private final Display display;
 
-  public PlayerFactory() {
-    playerOne = new HumanPlayer();
-    playerTwo = new HumanPlayer();
+  public PlayerFactory(Display display) {
+    this.display = display;
   }
 
-  public HumanPlayer getPlayerOne() {
-    return playerOne;
-  }
-
-  public HumanPlayer getPlayerTwo() {
-    return playerTwo;
+  public List<HumanPlayer> buildHumanPlayers() {
+    List<HumanPlayer> players = new ArrayList<>();
+    players.add(new HumanPlayer(display));
+    players.add(new HumanPlayer(display));
+    return players;
   }
 }
