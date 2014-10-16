@@ -7,7 +7,8 @@ import ttt.Exceptions.InvalidMoveException;
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BoardTest {
 
@@ -21,55 +22,55 @@ public class BoardTest {
 
   @Test
   public void itHasNineMoves() {
-    assertEquals(defaultAvailableMoves, board.numberOfAvailableMoves());
+    assertThat(board.numberOfAvailableMoves(), equalTo(defaultAvailableMoves));
   }
 
   @Test
   public void itReturnsNewBoardWithMarkedMoves() {
     Board boardWithOneMove = board.newBoardWithMove(7, "X");
     Board boardWithTwoMoves = boardWithOneMove.newBoardWithMove(8, "X");
-    assertEquals(defaultAvailableMoves - 2, boardWithTwoMoves.numberOfAvailableMoves());
+    assertThat(boardWithTwoMoves.numberOfAvailableMoves(), equalTo(defaultAvailableMoves - 2));
   }
 
   @Test
   public void itReturnsAListOfAvailableMoves() {
     List<Integer> moves = asList(0, 1, 2, 3, 4, 5, 6, 8);
     Board boardWithOneMove = board.newBoardWithMove(7, "X");
-    assertEquals(moves, boardWithOneMove.listOfMoves());
+    assertThat(boardWithOneMove.listOfMoves(), equalTo(moves));
   }
 
   @Test
   public void itReturnsAllCombinations() {
     List<Line> combinations = board.getCombinations();
 
-    assertEquals(8, combinations.size());
+    assertThat(combinations.size(), equalTo(8));
   }
 
   @Test
   public void itReturnsFalseIfBoardDoesNotHaveWinner() {
-    assertEquals(false, board.hasWinner());
+    assertThat(board.hasWinner(), equalTo(false));
   }
 
   @Test
   public void itReturnsTrueIfBoardHasWinner() {
     Board board = new Board(asList("X", "X", "X", "", "", "", "", "", ""));
-    assertEquals(true, board.hasWinner());
+    assertThat(board.hasWinner(), equalTo(true));
   }
 
   @Test
   public void itReturnsFalseIfNotADraw() {
-    assertEquals(false, board.hasDraw());
+    assertThat(board.hasDraw(), equalTo(false));
   }
 
   @Test
   public void itReturnsTrueIfADraw() {
     Board board = new Board(asList("X", "O", "X", "O", "O", "X", "O", "X", "O"));
-    assertEquals(true, board.hasDraw());
+    assertThat(board.hasDraw(), equalTo(true));
   }
 
   @Test
   public void itReturnsFalseIfBoardIsNotInEndState() {
-    assertEquals(false, board.isOver());
+    assertThat(board.isOver(), equalTo(false));
   }
 
   @Test
@@ -77,25 +78,25 @@ public class BoardTest {
     Board boardWithDraw = new Board(asList("X", "O", "X", "O", "O", "X", "O", "X", "O"));
     Board boardWithWin = new Board(asList("X", "X", "X", "", "", "", "", "", ""));
 
-    assertEquals(true, boardWithDraw.isOver());
-    assertEquals(true, boardWithWin.isOver());
+    assertThat(boardWithDraw.isOver(), equalTo(true));
+    assertThat(boardWithWin.isOver(), equalTo(true));
   }
 
   @Test
   public void itReturnsCurrentMarkWhenBoardMovesIsOdd() {
-    assertEquals("X", board.currentMark());
+    assertThat(board.currentMark(), equalTo("X"));
   }
 
   @Test
   public void itReturnsCurrentMarkWhenBoardMovesIsEven() {
     Board boardWithMove = board.newBoardWithMove(0, "X");
-    assertEquals("O", boardWithMove.currentMark());
+    assertThat(boardWithMove.currentMark(), equalTo("O"));
   }
 
   @Test
   public void itReturnsMarkOfLastMoveMade() {
     Board boardWithTwoMoves = new Board(asList("X", "O", "", "", "", "", "", "", ""));
-    assertEquals("O", boardWithTwoMoves.lastMoveMark());
+    assertThat(boardWithTwoMoves.lastMoveMark(), equalTo("O"));
   }
 
   @Test(expected = InvalidMoveException.class)

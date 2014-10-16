@@ -2,14 +2,15 @@ package ttt;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class PlayerFactoryTest {
 
   @Test
   public void itCreatesTwoHumanPlayers() {
     PlayerFactory factory =  new PlayerFactory();
-    assertTrue(HumanPlayer.class == factory.getPlayerOne().getClass());
-    assertTrue(HumanPlayer.class == factory.getPlayerTwo().getClass());
+    assertThat(factory.getPlayerOne(), instanceOf(HumanPlayer.class));
+    assertThat(factory.getPlayerTwo(), instanceOf(HumanPlayer.class));
   }
 }

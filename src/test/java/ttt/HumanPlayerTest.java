@@ -2,7 +2,8 @@ package ttt;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class HumanPlayerTest {
 
@@ -11,6 +12,6 @@ public class HumanPlayerTest {
     HumanPlayer player = new HumanPlayer();
     Board board = new Board();
     Board newBoard = player.makeMove(board, 1);
-    assertEquals(8, newBoard.numberOfAvailableMoves());
+    assertThat(newBoard.numberOfAvailableMoves(), equalTo(8));
   }
 }
