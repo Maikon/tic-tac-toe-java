@@ -7,9 +7,6 @@ public class HumanPlayer {
     this.display = display;
   }
 
-  public HumanPlayer() {
-  }
-
   public Board makeMove(Board board) {
     return board.newBoardWithMove(display.getMove(), board.currentMark());
   }
