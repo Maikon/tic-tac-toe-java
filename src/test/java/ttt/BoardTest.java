@@ -64,7 +64,7 @@ public class BoardTest {
 
   @Test
   public void itReturnsTrueIfADraw() {
-    Board board = new Board(asList("X", "O", "X", "O", "O", "X", "O", "X", "O"));
+    Board board = new Board(asList("X", "O", "X", "X", "O", "X", "O", "X", "O"));
     assertThat(board.hasDraw(), equalTo(true));
   }
 
