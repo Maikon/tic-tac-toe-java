@@ -64,6 +64,10 @@ public class Board {
     }
   }
 
+  public boolean isOver() {
+    return hasDraw() || hasWinner();
+  }
+
   public boolean hasWinner() {
     for (Line combo : getCombinations()) {
       if(combo.hasWinner()) {
@@ -75,10 +79,6 @@ public class Board {
 
   public boolean hasDraw() {
     return !hasWinner() && listOfMoves().isEmpty();
-  }
-
-  public boolean isOver() {
-    return hasDraw() || hasWinner();
   }
 
   public List<Line> getCombinations() {
