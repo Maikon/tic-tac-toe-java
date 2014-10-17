@@ -74,12 +74,7 @@ public class Board {
   }
 
   public boolean hasDraw() {
-    for (Line combo : getCombinations()) {
-      if(combo.hasDraw()) {
-        return true;
-      }
-    }
-    return false;
+    return !hasWinner() && listOfMoves().isEmpty();
   }
 
   public boolean isOver() {
