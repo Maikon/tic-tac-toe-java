@@ -19,7 +19,9 @@ public class GameTest {
 
   @Before
   public void setup() {
-    display = new FakeDisplay(0);
+    List<Integer> moves = asList(0, 1, 8);
+    display = new FakeDisplay(moves);
+    // display = new FakeDisplay(0);
     board = new Board();
     game = new Game(board);
   }
@@ -37,6 +39,16 @@ public class GameTest {
     List<String> resultedBoard = asList("X", "", "", "", "", "", "", "", "");
     assertThat(game.getBoardGrid(), equalTo(resultedBoard));
   }
+
+  @Test
+  public void bothPlayersMakeMove() {
+    game.getTwoHumanPlayers(display);
+    game.nextPlayerMakesMove();
+    game.nextPlayerMakesMove();
+    game.nextPlayerMakesMove();
+    List<String> resultedBoard = asList("X", "O", "", "", "", "", "", "", "X");
+    List<String> boardGrid = game.getBoardGrid();
+    assertThat(boardGrid, equalTo(resultedBoard));
   }
 }
 

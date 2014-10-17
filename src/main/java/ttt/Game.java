@@ -1,5 +1,6 @@
 package ttt;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Game {
@@ -20,6 +21,7 @@ public class Game {
 
   public void nextPlayerMakesMove() {
     board = getPlayers().get(0).makeMove(board);
+    Collections.rotate(players, 1);
   }
 
   public List<HumanPlayer> getPlayers() {
