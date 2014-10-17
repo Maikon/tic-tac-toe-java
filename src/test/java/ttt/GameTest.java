@@ -1,5 +1,6 @@
 package ttt;
 
+import org.junit.Before;
 import org.junit.Test;
 import ttt.Fakes.FakeDisplay;
 
@@ -12,19 +13,25 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GameTest {
 
+  private Game game;
+  private Board board;
+  private FakeDisplay display;
+
+  @Before
+  public void setup() {
+    display = new FakeDisplay(0);
+    board = new Board();
+    game = new Game(board);
+  }
+
   @Test
   public void itSetsTwoPlayers() {
-    Game game = new Game();
-    FakeDisplay display = new FakeDisplay();
     game.getTwoHumanPlayers(display);
     assertThat(game.getPlayers().size(), is(2));
   }
 
   @Test
   public void firstPlayerMakesMove() {
-    FakeDisplay display = new FakeDisplay(0);
-    Board board = new Board();
-    Game game = new Game(board);
     game.getTwoHumanPlayers(display);
     Board newBoard = game.nextPlayerMakesMove();
     List<String> resultedBoard = asList("X", "", "", "", "", "", "", "", "");
