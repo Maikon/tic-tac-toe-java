@@ -3,14 +3,17 @@ package ttt.Fakes;
 import ttt.Board;
 import ttt.Display;
 
-public class FakeDisplay implements Display {
-  private final int move;
+import java.util.LinkedList;
+import java.util.List;
 
-  public FakeDisplay() {
-    this(0);
-  }
-  public FakeDisplay(int move) {
-    this.move = move;
+public class FakeDisplay implements Display {
+  private LinkedList<Integer> listOfMoves;
+
+  public FakeDisplay(List<Integer> moves) {
+    listOfMoves = new LinkedList<Integer>();
+    for (Integer move : moves) {
+      listOfMoves.add(move);
+    }
   }
 
   @Override
@@ -19,7 +22,7 @@ public class FakeDisplay implements Display {
 
   @Override
   public int getMove() {
-    return move;
+    return listOfMoves.pop();
   }
 
   @Override
