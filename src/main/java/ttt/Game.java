@@ -18,11 +18,15 @@ public class Game {
     players = factory.buildHumanPlayers();
   }
 
-  public Board nextPlayerMakesMove() {
-    return getPlayers().get(0).makeMove(board);
+  public void nextPlayerMakesMove() {
+    board = getPlayers().get(0).makeMove(board);
   }
 
   public List<HumanPlayer> getPlayers() {
     return players;
+  }
+
+  public List<String> getBoardGrid() {
+    return board.getGrid();
   }
 }

@@ -33,9 +33,10 @@ public class GameTest {
   @Test
   public void firstPlayerMakesMove() {
     game.getTwoHumanPlayers(display);
-    Board newBoard = game.nextPlayerMakesMove();
+    game.nextPlayerMakesMove();
     List<String> resultedBoard = asList("X", "", "", "", "", "", "", "", "");
-    assertThat(newBoard.getGrid(), equalTo(resultedBoard));
+    assertThat(game.getBoardGrid(), equalTo(resultedBoard));
+  }
   }
 }
 
