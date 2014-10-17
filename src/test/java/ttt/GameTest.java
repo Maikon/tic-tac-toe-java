@@ -21,20 +21,18 @@ public class GameTest {
   public void setup() {
     List<Integer> moves = asList(0, 1, 8);
     display = new FakeDisplay(moves);
-    // display = new FakeDisplay(0);
     board = new Board();
     game = new Game(board);
+    game.getTwoHumanPlayers(display);
   }
 
   @Test
   public void itSetsTwoPlayers() {
-    game.getTwoHumanPlayers(display);
     assertThat(game.getPlayers().size(), is(2));
   }
 
   @Test
   public void firstPlayerMakesMove() {
-    game.getTwoHumanPlayers(display);
     game.nextPlayerMakesMove();
     List<String> resultedBoard = asList("X", "", "", "", "", "", "", "", "");
     assertThat(game.getBoardGrid(), equalTo(resultedBoard));
@@ -42,7 +40,6 @@ public class GameTest {
 
   @Test
   public void bothPlayersMakeMove() {
-    game.getTwoHumanPlayers(display);
     game.nextPlayerMakesMove();
     game.nextPlayerMakesMove();
     game.nextPlayerMakesMove();
