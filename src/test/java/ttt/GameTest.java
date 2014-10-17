@@ -47,5 +47,16 @@ public class GameTest {
     List<String> boardGrid = game.getBoardGrid();
     assertThat(boardGrid, equalTo(resultedBoard));
   }
+
+  @Test
+  public void returnFalseIfGameIsNotOver() {
+    assertThat(game.isOver(), is(false));
+  }
+
+  @Test
+  public void returnTrueIfGameIsOver() {
+    game.setBoardGrid(asList("X", "O", "X", "X", "O", "X", "O", "X", "O"));
+    assertThat(game.isOver(), is(true));
+  }
 }
 

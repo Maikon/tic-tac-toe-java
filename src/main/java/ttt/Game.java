@@ -11,9 +11,6 @@ public class Game {
     this.board = board;
   }
 
-  public Game() {
-  }
-
   public void getTwoHumanPlayers(Display display) {
     PlayerFactory factory = new PlayerFactory(display);
     players = factory.buildHumanPlayers();
@@ -31,4 +28,13 @@ public class Game {
   public List<String> getBoardGrid() {
     return board.getGrid();
   }
+
+  public void setBoardGrid(List<String> grid) {
+    board.setGrid(grid);
+  }
+
+  public boolean isOver() {
+    return board.isOver();
+  }
+
 }

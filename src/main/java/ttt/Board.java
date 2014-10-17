@@ -7,7 +7,7 @@ import java.util.*;
 import static java.util.Arrays.asList;
 
 public class Board {
-  private final List<String> grid;
+  private List<String> grid;
 
   public Board() {
     this(Collections.nCopies(9, ""));
@@ -113,5 +113,9 @@ public class Board {
 
   public List<String> getGrid() {
     return grid;
+  }
+
+  public void setGrid(List<String> grid) {
+    this.grid = grid;
   }
 }
