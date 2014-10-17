@@ -89,7 +89,7 @@ public class Board {
     return combos;
   }
 
-  private List<Line> getRows() {
+  public List<Line> getRows() {
     return asList(getLine(0, 1, 2),
                   getLine(3, 4, 5),
                   getLine(6, 7, 8));

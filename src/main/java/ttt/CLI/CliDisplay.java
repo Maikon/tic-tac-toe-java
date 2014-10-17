@@ -1,5 +1,7 @@
 package ttt.CLI;
 
+import org.apache.commons.lang3.StringUtils;
+import ttt.Board;
 import ttt.Display;
 
 import java.io.PrintStream;
@@ -15,6 +17,11 @@ public class CliDisplay implements Display {
   @Override
   public void greetPlayers() {
     output.println("Welcome to TicTacToe!");
+  }
+
+  @Override
+  public void show(Board board) {
+    output.println(StringUtils.join(board.getRows(), "\n--|---|--\n"));
   }
 
   @Override

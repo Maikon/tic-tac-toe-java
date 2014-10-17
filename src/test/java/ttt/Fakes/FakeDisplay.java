@@ -1,5 +1,6 @@
 package ttt.Fakes;
 
+import ttt.Board;
 import ttt.Display;
 
 public class FakeDisplay implements Display {
@@ -10,6 +11,10 @@ public class FakeDisplay implements Display {
   }
   public FakeDisplay(int move) {
     this.move = move;
+  }
+
+  @Override
+  public void show(Board board) {
   }
 
   @Override

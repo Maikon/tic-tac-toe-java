@@ -21,6 +21,11 @@ public class Line {
     return first.equals(second) && second.equals(third);
   }
 
+  @Override
+  public String toString() {
+    return first + " | " + second + " | " + third;
+  }
+
   private boolean positionsAreNotEmpty() {
     return !(first.isEmpty() || second.isEmpty() || third.isEmpty());
   }
