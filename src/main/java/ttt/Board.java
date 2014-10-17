@@ -110,4 +110,8 @@ public class Board {
     List<String> positions = asList(grid.get(first), grid.get(second), grid.get(third));
     return new Line(positions);
   }
+
+  public List<String> getGrid() {
+    return grid;
+  }
 }
