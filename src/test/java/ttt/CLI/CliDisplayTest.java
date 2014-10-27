@@ -4,9 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ttt.Board;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -17,12 +15,14 @@ public class CliDisplayTest {
 
   private CliDisplay display;
   private OutputStream output;
+  private PrintStream printStream;
 
   @Before
   public void setup() {
     output = new ByteArrayOutputStream();
-    PrintStream printStream = new PrintStream(output);
-    display = new CliDisplay(printStream);
+    printStream = new PrintStream(output);
+    InputStream inputStream = new ByteArrayInputStream("".getBytes());
+    display = new CliDisplay(printStream, inputStream);
   }
 
   @Test
@@ -47,5 +47,19 @@ public class CliDisplayTest {
   public void asksForAMove() {
     display.askForMove();
     assertThat(output.toString(), containsString("Please choose a move from the available ones:"));
+  }
+
+  @Test
+  public void returnsTheInputFromUser() {
+    InputStream inputStream = new ByteArrayInputStream("9\n".getBytes());
+    CliDisplay display = new CliDisplay(printStream, inputStream);
+    assertThat(display.getMove(), is(9));
+  }
+
+  @Test
+  public void returnsInvalidMoveFromUser() {
+    InputStream inputStream = new ByteArrayInputStream("y\n".getBytes());
+    CliDisplay display = new CliDisplay(printStream, inputStream);
+    assertThat(display.getMove(), is(-1));
   }
 }
