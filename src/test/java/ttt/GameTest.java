@@ -21,7 +21,7 @@ public class GameTest {
     Display display = new FakeDisplay(moves);
     Board board = new Board();
     game = new Game(board);
-    game.getTwoHumanPlayers(display);
+    game.setTwoPlayers(display);
   }
 
   @Test

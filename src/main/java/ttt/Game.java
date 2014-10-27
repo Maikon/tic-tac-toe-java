@@ -11,7 +11,7 @@ public class Game {
     this.board = board;
   }
 
-  public void getTwoHumanPlayers(Display display) {
+  public void setTwoPlayers(Display display) {
     PlayerFactory factory = new PlayerFactory(display);
     players = factory.buildHumanPlayers();
   }
