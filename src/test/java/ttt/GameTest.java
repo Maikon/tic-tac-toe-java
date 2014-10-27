@@ -18,7 +18,7 @@ public class GameTest {
   @Before
   public void setup() {
     List<Integer> moves = asList(0, 1, 8);
-    FakeDisplay display = new FakeDisplay(moves);
+    Display display = new FakeDisplay(moves);
     Board board = new Board();
     game = new Game(board);
     game.getTwoHumanPlayers(display);
