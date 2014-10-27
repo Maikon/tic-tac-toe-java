@@ -6,4 +6,6 @@ public interface Display {
   int getMove();
 
   void greetPlayers();
+
+  void askForMove();
 }

@@ -20,6 +20,11 @@ public class CliDisplay implements Display {
   }
 
   @Override
+  public void askForMove() {
+    output.println("Please choose a move from the available ones:");
+  }
+
+  @Override
   public void show(Board board) {
     output.println(StringUtils.join(board.getRows(), "\n--|---|--\n"));
   }

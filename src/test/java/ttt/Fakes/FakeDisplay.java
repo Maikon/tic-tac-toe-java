@@ -28,4 +28,8 @@ public class FakeDisplay implements Display {
   @Override
   public void greetPlayers() {
   }
+
+  @Override
+  public void askForMove() {
+  }
 }

@@ -37,4 +37,13 @@ public class CliDisplayTest {
                       "O | X | O\n";
     assertThat(output.toString(), is(expected));
   }
+
+  @Test
+  public void asksForAMove() {
+    OutputStream output = new ByteArrayOutputStream();
+    PrintStream printStream = new PrintStream(output);
+    CliDisplay display = new CliDisplay(printStream);
+    display.askForMove();
+    assertThat(output.toString(), containsString("Please choose a move from the available ones:"));
+  }
 }
