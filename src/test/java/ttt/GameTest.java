@@ -46,7 +46,8 @@ public class GameTest {
 
   @Test
   public void whenGameIsOver() {
-    game.setBoardGrid(asList("X", "O", "X", "X", "O", "X", "O", "X", "O"));
+    Board drawBoard = new Board(asList("X", "O", "X", "X", "O", "X", "O", "X", "O"));
+    Game game = new Game(drawBoard);
     assertThat(game.isOver(), is(true));
   }
 }

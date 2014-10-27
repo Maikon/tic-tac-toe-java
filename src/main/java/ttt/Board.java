@@ -114,8 +114,4 @@ public class Board {
   public List<String> getGrid() {
     return grid;
   }
-
-  public void setGrid(List<String> grid) {
-    this.grid = grid;
-  }
 }

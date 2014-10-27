@@ -29,12 +29,7 @@ public class Game {
     return board.getGrid();
   }
 
-  public void setBoardGrid(List<String> grid) {
-    board.setGrid(grid);
-  }
-
   public boolean isOver() {
     return board.isOver();
   }
-
 }
