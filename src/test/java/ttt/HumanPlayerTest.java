@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class HumanPlayerTest {
 
   @Test
-  public void itMakesMoveOnTheBoard() {
+  public void makesMoveOnTheBoard() {
     FakeDisplay display = new FakeDisplay(asList(1));
     HumanPlayer player = new HumanPlayer(display);
     Board board = new Board();

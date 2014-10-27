@@ -12,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class PlayerFactoryTest {
 
   @Test
-  public void itCreatesTwoHumanPlayers() {
+  public void createsTwoHumanPlayers() {
     PlayerFactory factory =  new PlayerFactory(new FakeDisplay(asList(0)));
     List<HumanPlayer> players = factory.buildHumanPlayers();
     assertThat(players.get(0), instanceOf(HumanPlayer.class));

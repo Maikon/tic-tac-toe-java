@@ -15,7 +15,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class CliDisplayTest {
 
   @Test
-  public void itGreetsThePlayers() {
+  public void greetsThePlayers() {
     OutputStream output = new ByteArrayOutputStream();
     PrintStream printStream = new PrintStream(output);
     CliDisplay display = new CliDisplay(printStream);
@@ -24,18 +24,17 @@ public class CliDisplayTest {
   }
 
   @Test
-  public void itPrintsTheBoard() {
+  public void printsTheBoard() {
     OutputStream output = new ByteArrayOutputStream();
     PrintStream printStream = new PrintStream(output);
     CliDisplay display = new CliDisplay(printStream);
     Board board = new Board(asList("X", "O", "X", "X", "O", "X", "O", "X", "O"));
     display.show(board);
-    String expected = "X | O | X" +
-                    "\n--|---|--\n" +
-                      "X | O | X" +
-                    "\n--|---|--\n" +
-                      "O | X | O" +
-                              "\n";
+    String expected = "X | O | X\n" +
+                      "--|---|--\n" +
+                      "X | O | X\n" +
+                      "--|---|--\n" +
+                      "O | X | O\n";
     assertThat(output.toString(), is(expected));
   }
 }

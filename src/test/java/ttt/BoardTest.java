@@ -22,60 +22,60 @@ public class BoardTest {
   }
 
   @Test
-  public void itHasNineMoves() {
+  public void hasNineMoves() {
     assertThat(board.numberOfAvailableMoves(), equalTo(defaultAvailableMoves));
   }
 
   @Test
-  public void itReturnsNewBoardWithMarkedMoves() {
+  public void newBoardWithMovesMade() {
     Board boardWithOneMove = board.newBoardWithMove(7, "X");
     Board boardWithTwoMoves = boardWithOneMove.newBoardWithMove(8, "X");
     assertThat(boardWithTwoMoves.numberOfAvailableMoves(), equalTo(defaultAvailableMoves - 2));
   }
 
   @Test
-  public void itReturnsAListOfAvailableMoves() {
+  public void listOfAvailableMoves() {
     List<Integer> moves = asList(0, 1, 2, 3, 4, 5, 6, 8);
     Board boardWithOneMove = board.newBoardWithMove(7, "X");
     assertThat(boardWithOneMove.listOfMoves(), equalTo(moves));
   }
 
   @Test
-  public void itReturnsAllCombinations() {
+  public void allCombinations() {
     List<Line> combinations = board.getCombinations();
 
     assertThat(combinations.size(), is(8));
   }
 
   @Test
-  public void itReturnsFalseIfBoardDoesNotHaveWinner() {
+  public void whenBoardDoesNotHaveWinner() {
     assertThat(board.hasWinner(), is(false));
   }
 
   @Test
-  public void itReturnsTrueIfBoardHasWinner() {
+  public void whenBoardHasWinner() {
     Board board = new Board(asList("X", "X", "X", "", "", "", "", "", ""));
     assertThat(board.hasWinner(), is(true));
   }
 
   @Test
-  public void itReturnsFalseIfNotADraw() {
+  public void whenIsNotADraw() {
     assertThat(board.hasDraw(), is(false));
   }
 
   @Test
-  public void itReturnsTrueIfADraw() {
+  public void whenIsADraw() {
     Board board = new Board(asList("X", "O", "X", "X", "O", "X", "O", "X", "O"));
     assertThat(board.hasDraw(), is(true));
   }
 
   @Test
-  public void itReturnsFalseIfBoardIsNotInEndState() {
+  public void whenNotInEndState() {
     assertThat(board.isOver(), is(false));
   }
 
   @Test
-  public void itReturnsFalseIfBoardIsInEndState() {
+  public void whenInEndState() {
     Board boardWithDraw = new Board(asList("X", "O", "X", "O", "O", "X", "O", "X", "O"));
     Board boardWithWin = new Board(asList("X", "X", "X", "", "", "", "", "", ""));
 
@@ -84,24 +84,24 @@ public class BoardTest {
   }
 
   @Test
-  public void itReturnsCurrentMarkWhenBoardMovesIsOdd() {
+  public void currentMarkWhenBoardMovesIsOdd() {
     assertThat(board.currentMark(), is("X"));
   }
 
   @Test
-  public void itReturnsCurrentMarkWhenBoardMovesIsEven() {
+  public void currentMarkWhenBoardMovesIsEven() {
     Board boardWithMove = board.newBoardWithMove(0, "X");
     assertThat(boardWithMove.currentMark(), is("O"));
   }
 
   @Test
-  public void itReturnsMarkOfLastMoveMade() {
+  public void markOfLastMoveMade() {
     Board boardWithTwoMoves = new Board(asList("X", "O", "", "", "", "", "", "", ""));
     assertThat(boardWithTwoMoves.lastMoveMark(), is("O"));
   }
 
   @Test(expected = InvalidMoveException.class)
-  public void itRaisesAnExceptionForAnInvalidMove() {
+  public void raisesAnExceptionForAnInvalidMove() {
     Board boardWithMove = board.newBoardWithMove(0, "X");
     boardWithMove.newBoardWithMove(0, "O");
   }
