@@ -45,7 +45,12 @@ public class Game {
     display.greetPlayers();
     setTwoPlayers();
     while (!isOver()) {
+      display.show(getBoard());
       nextPlayerMakesMove();
     }
+  }
+
+  private Board getBoard() {
+    return board;
   }
 }
