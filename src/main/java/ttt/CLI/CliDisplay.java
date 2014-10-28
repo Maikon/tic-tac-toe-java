@@ -29,6 +29,11 @@ public class CliDisplay implements Display {
   }
 
   @Override
+  public void showInvalidMoveMessage() {
+    outputStream.println("--- Invalid Move ---");
+  }
+
+  @Override
   public void show(Board board) {
     HashMap<Integer, String> grid = board.getPositions();
     String content = "";

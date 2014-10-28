@@ -33,15 +33,15 @@ public class FakeDisplay implements Display {
 
   @Override
   public void askForMove() {
-    this.called = true;
   }
 
   public void setMoves(List<Integer> moves) {
     listOfMoves = new LinkedList<>(moves);
   }
 
-  public boolean askedForMoveAgain() {
-    return called;
+  @Override
+  public void showInvalidMoveMessage() {
+    this.called = true;
   }
 
   public boolean greetedPlayer() {
@@ -50,5 +50,9 @@ public class FakeDisplay implements Display {
 
   public boolean showedBoard() {
     return showed;
+  }
+
+  public boolean showedInvalidMoveMessage() {
+    return called;
   }
 }

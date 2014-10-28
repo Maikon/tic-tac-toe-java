@@ -8,4 +8,6 @@ public interface Display {
   void greetPlayers();
 
   void askForMove();
+
+  void showInvalidMoveMessage();
 }

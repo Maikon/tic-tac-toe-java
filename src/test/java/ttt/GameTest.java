@@ -44,7 +44,7 @@ public class GameTest {
   public void raisesExceptionGivenInvalidMove() {
     display.setMoves(asList(9));
     game.nextPlayerMakesMove();
-    assertThat(display.askedForMoveAgain(), is(true));
+    assertThat(display.showedInvalidMoveMessage(), is(true));
   }
 
 

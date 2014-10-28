@@ -61,4 +61,10 @@ public class CliDisplayTest {
     CliDisplay display = new CliDisplay(printStream, inputStream);
     assertThat(display.getMove(), is(display.INVALID_MOVE));
   }
+
+  @Test
+  public void printsInvalidMoveMessage() {
+    display.showInvalidMoveMessage();
+    assertThat(output.toString(), containsString("--- Invalid Move ---"));
+  }
 }

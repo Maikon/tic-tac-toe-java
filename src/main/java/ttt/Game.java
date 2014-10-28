@@ -25,7 +25,7 @@ public class Game {
       board = getPlayers().get(0).makeMove(board);
       Collections.rotate(players, 1);
     } catch (InvalidMoveException e) {
-      display.askForMove();
+      display.showInvalidMoveMessage();
     }
   }
 
