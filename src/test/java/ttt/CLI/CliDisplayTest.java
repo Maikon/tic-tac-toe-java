@@ -60,6 +60,6 @@ public class CliDisplayTest {
   public void returnsInvalidMoveFromUser() {
     InputStream inputStream = new ByteArrayInputStream("y\n".getBytes());
     CliDisplay display = new CliDisplay(printStream, inputStream);
-    assertThat(display.getMove(), is(-1));
+    assertThat(display.getMove(), is(display.INVALID_MOVE));
   }
 }

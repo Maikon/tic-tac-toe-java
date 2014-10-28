@@ -10,6 +10,7 @@ public class CliDisplay implements Display {
 
   private final PrintStream outputStream;
   private final BufferedReader inputStream;
+  final int INVALID_MOVE = -1;
 
   public CliDisplay(PrintStream outputStream, InputStream inputStream) {
     this.outputStream = outputStream;
@@ -39,7 +40,7 @@ public class CliDisplay implements Display {
       move = inputStream.readLine();
       return Integer.parseInt(move);
     } catch (IOException | NumberFormatException e) {
-      return -1;
+      return INVALID_MOVE;
     }
   }
 }
