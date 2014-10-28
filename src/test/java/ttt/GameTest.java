@@ -41,6 +41,24 @@ public class GameTest {
   }
 
   @Test
+  public void raisesExceptionGivenInvalidMove() {
+    display.setMoves(asList(9));
+    game.nextPlayerMakesMove();
+    assertThat(display.askedForMoveAgain(), is(true));
+  }
+
+
+  @Test
+  public void samePlayerGoesAgainIfMoveInvalid() {
+    display.setMoves(asList(9, 0));
+    game.nextPlayerMakesMove();
+    game.nextPlayerMakesMove();
+    List<String> resultedBoard = asList("X", "", "", "", "", "", "", "", "");
+    List<String> boardGrid = game.getBoardGrid();
+    assertThat(boardGrid, equalTo(resultedBoard));
+  }
+
+  @Test
   public void whenGameIsNotOver() {
     assertThat(game.isOver(), is(false));
   }

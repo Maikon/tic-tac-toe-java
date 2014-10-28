@@ -1,5 +1,7 @@
 package ttt;
 
+import ttt.Exceptions.InvalidMoveException;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -19,8 +21,12 @@ public class Game {
   }
 
   public void nextPlayerMakesMove() {
-    board = getPlayers().get(0).makeMove(board);
-    Collections.rotate(players, 1);
+    try {
+      board = getPlayers().get(0).makeMove(board);
+      Collections.rotate(players, 1);
+    } catch (InvalidMoveException e) {
+      display.askForMove();
+    }
   }
 
   public List<HumanPlayer> getPlayers() {

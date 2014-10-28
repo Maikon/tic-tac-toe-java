@@ -8,12 +8,10 @@ import java.util.List;
 
 public class FakeDisplay implements Display {
   private LinkedList<Integer> listOfMoves;
+  private boolean called = false;
 
   public FakeDisplay(List<Integer> moves) {
-    listOfMoves = new LinkedList<Integer>();
-    for (Integer move : moves) {
-      listOfMoves.add(move);
-    }
+    setMoves(moves);
   }
 
   @Override
@@ -31,5 +29,14 @@ public class FakeDisplay implements Display {
 
   @Override
   public void askForMove() {
+    this.called = true;
+  }
+
+  public void setMoves(List<Integer> moves) {
+    listOfMoves = new LinkedList<>(moves);
+  }
+
+  public boolean askedForMoveAgain() {
+    return called;
   }
 }
