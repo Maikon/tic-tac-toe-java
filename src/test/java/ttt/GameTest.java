@@ -14,14 +14,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class GameTest {
 
   private Game game;
+  private FakeDisplay display;
 
   @Before
   public void setup() {
     List<Integer> moves = asList(0, 1, 8);
-    Display display = new FakeDisplay(moves);
+    display = new FakeDisplay(moves);
     Board board = new Board();
-    game = new Game(board);
-    game.setTwoPlayers(display);
+    game = new Game(board, display);
+    game.setTwoPlayers();
   }
 
   @Test
@@ -47,7 +48,7 @@ public class GameTest {
   @Test
   public void whenGameIsOver() {
     Board drawBoard = new Board(asList("X", "O", "X", "X", "O", "X", "O", "X", "O"));
-    Game game = new Game(drawBoard);
+    Game game = new Game(drawBoard, display);
     assertThat(game.isOver(), is(true));
   }
 }

@@ -4,14 +4,16 @@ import java.util.Collections;
 import java.util.List;
 
 public class Game {
+  private final Display display;
   private Board board;
   private List<HumanPlayer> players;
 
-  public Game(Board board) {
+  public Game(Board board, Display display) {
     this.board = board;
+    this.display = display;
   }
 
-  public void setTwoPlayers(Display display) {
+  public void setTwoPlayers() {
     PlayerFactory factory = new PlayerFactory(display);
     players = factory.buildHumanPlayers();
   }
