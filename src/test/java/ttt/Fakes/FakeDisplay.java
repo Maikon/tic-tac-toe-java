@@ -9,6 +9,7 @@ import java.util.List;
 public class FakeDisplay implements Display {
   private LinkedList<Integer> listOfMoves;
   private boolean called = false;
+  private boolean greeted = false;
 
   public FakeDisplay(List<Integer> moves) {
     setMoves(moves);
@@ -25,6 +26,7 @@ public class FakeDisplay implements Display {
 
   @Override
   public void greetPlayers() {
+    this.greeted = true;
   }
 
   @Override
@@ -38,5 +40,9 @@ public class FakeDisplay implements Display {
 
   public boolean askedForMoveAgain() {
     return called;
+  }
+
+  public boolean greetedPlayer() {
+    return greeted;
   }
 }

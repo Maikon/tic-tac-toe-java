@@ -42,6 +42,7 @@ public class Game {
   }
 
   public void start() {
+    display.greetPlayers();
     setTwoPlayers();
     while (!isOver()) {
       nextPlayerMakesMove();

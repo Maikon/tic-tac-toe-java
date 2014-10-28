@@ -71,6 +71,13 @@ public class GameTest {
   }
 
   @Test
+  public void greetsThePlayerBeforeStarting(){
+    display.setMoves(asList(0, 5, 1, 4, 2));
+    game.start();
+    assertThat(display.greetedPlayer(), is(true));
+  }
+
+  @Test
   public void playsTheGameUntilOver() {
     Board board = new Board();
     List<Integer> moves = asList(0, 5, 1, 4, 2);
