@@ -1,10 +1,11 @@
 package ttt.CLI;
 
-import org.apache.commons.lang3.StringUtils;
 import ttt.Board;
 import ttt.Display;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CliDisplay implements Display {
 
@@ -29,7 +30,26 @@ public class CliDisplay implements Display {
 
   @Override
   public void show(Board board) {
-    outputStream.println(StringUtils.join(board.getRows(), "\n--|---|--\n"));
+    HashMap<Integer, String> grid = board.getPositions();
+    String content = "";
+    int counter = 0;
+    for (Map.Entry<Integer, String> entry : grid.entrySet()) {
+      if (entry.getValue().equals("")){
+        content += entry.getKey().toString();
+      } else {
+        content += entry.getValue();
+      }
+      counter++;
+      if(counter % 3 == 0) {
+        content += "\n";
+        if(counter < 8) {
+          content += "--|---|--\n";
+        }
+      } else {
+        content += " | ";
+      }
+    }
+    outputStream.print(content);
   }
 
   @Override

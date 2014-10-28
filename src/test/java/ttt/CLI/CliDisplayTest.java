@@ -6,7 +6,6 @@ import ttt.Board;
 
 import java.io.*;
 
-import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -33,13 +32,13 @@ public class CliDisplayTest {
 
   @Test
   public void printsTheBoard() {
-    Board board = new Board(asList("X", "O", "X", "X", "O", "X", "O", "X", "O"));
-    display.show(board);
-    String expected = "X | O | X\n" +
+    Board emptyBoard = new Board();
+    display.show(emptyBoard);
+    String expected = "1 | 2 | 3\n" +
                       "--|---|--\n" +
-                      "X | O | X\n" +
+                      "4 | 5 | 6\n" +
                       "--|---|--\n" +
-                      "O | X | O\n";
+                      "7 | 8 | 9\n";
     assertThat(output.toString(), is(expected));
   }
 

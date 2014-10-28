@@ -75,6 +75,14 @@ public class Board {
                   getLine(6, 7, 8));
   }
 
+  public HashMap<Integer, String> getPositions() {
+    HashMap<Integer, String> gridPairs = new HashMap<>();
+    for (int i = 0; i < 9; i++) {
+      gridPairs.put(i + 1, grid.get(i));
+    }
+    return gridPairs;
+  }
+
   private void addAvailableMoves(List<Integer> moves) {
     for(int i=0; i < grid.size(); i++) {
       if(grid.get(i).equals("")) {
