@@ -48,6 +48,7 @@ public class Game {
       display.show(getBoard());
       nextPlayerMakesMove();
     }
+    display.showResults(getBoard());
   }
 
   private Board getBoard() {

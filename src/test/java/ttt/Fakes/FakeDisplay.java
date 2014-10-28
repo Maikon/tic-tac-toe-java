@@ -11,6 +11,7 @@ public class FakeDisplay implements Display {
   private boolean called = false;
   private boolean greeted = false;
   private boolean showed = false;
+  private boolean showedResults = false;
 
   public FakeDisplay(List<Integer> moves) {
     setMoves(moves);
@@ -44,6 +45,11 @@ public class FakeDisplay implements Display {
     this.called = true;
   }
 
+  @Override
+  public void showResults(Board board) {
+    this.showedResults = true;
+  }
+
   public boolean greetedPlayer() {
     return greeted;
   }
@@ -54,5 +60,9 @@ public class FakeDisplay implements Display {
 
   public boolean showedInvalidMoveMessage() {
     return called;
+  }
+
+  public boolean showedResults() {
+    return showedResults;
   }
 }

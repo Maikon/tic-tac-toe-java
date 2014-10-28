@@ -34,6 +34,15 @@ public class CliDisplay implements Display {
   }
 
   @Override
+  public void showResults(Board board) {
+    if (board.hasWinner()) {
+      outputStream.println(board.lastMoveMark() + " won the game!");
+    } else {
+      outputStream.println("The game is a draw!");
+    }
+  }
+
+  @Override
   public void show(Board board) {
     HashMap<Integer, String> grid = board.getPositions();
     String content = "";

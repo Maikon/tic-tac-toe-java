@@ -6,6 +6,7 @@ import ttt.Board;
 
 import java.io.*;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -66,5 +67,19 @@ public class CliDisplayTest {
   public void printsInvalidMoveMessage() {
     display.showInvalidMoveMessage();
     assertThat(output.toString(), containsString("--- Invalid Move ---"));
+  }
+
+  @Test
+  public void printsTheResultForAWin() {
+    Board board = new Board(asList("X", "X", "X", "O", "O", "", "", "", ""));
+    display.showResults(board);
+    assertThat(output.toString(), containsString("X won the game!"));
+  }
+
+  @Test
+  public void printsTheResultForADraw() {
+    Board board = new Board(asList("X", "O", "X", "X", "O", "X", "O", "X", "O"));
+    display.showResults(board);
+    assertThat(output.toString(), containsString("The game is a draw!"));
   }
 }

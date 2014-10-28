@@ -10,4 +10,6 @@ public interface Display {
   void askForMove();
 
   void showInvalidMoveMessage();
+
+  void showResults(Board board);
 }
