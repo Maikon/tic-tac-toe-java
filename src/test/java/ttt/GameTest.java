@@ -69,5 +69,15 @@ public class GameTest {
     Game game = new Game(drawBoard, display);
     assertThat(game.isOver(), is(true));
   }
+
+  @Test
+  public void playsTheGameUntilOver() {
+    Board board = new Board();
+    List<Integer> moves = asList(0, 5, 1, 4, 2);
+    Display display = new FakeDisplay(moves);
+    Game game = new Game(board, display);
+    game.start();
+    assertThat(game.isOver(), is(true));
+  }
 }
 

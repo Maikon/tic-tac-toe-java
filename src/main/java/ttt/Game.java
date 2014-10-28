@@ -40,4 +40,11 @@ public class Game {
   public boolean isOver() {
     return board.isOver();
   }
+
+  public void start() {
+    setTwoPlayers();
+    while (!isOver()) {
+      nextPlayerMakesMove();
+    }
+  }
 }
