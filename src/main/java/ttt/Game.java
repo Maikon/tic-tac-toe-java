@@ -22,7 +22,7 @@ public class Game {
 
   public void nextPlayerMakesMove() {
     try {
-      board = getPlayers().get(0).makeMove(board);
+      board = getPlayers().get(0).makeMove(getBoard());
       Collections.rotate(players, 1);
     } catch (InvalidMoveException e) {
       display.showInvalidMoveMessage();
@@ -34,11 +34,11 @@ public class Game {
   }
 
   public List<String> getBoardGrid() {
-    return board.getGrid();
+    return getBoard().getGrid();
   }
 
   public boolean isOver() {
-    return board.isOver();
+    return getBoard().isOver();
   }
 
   public void start() {
