@@ -22,7 +22,7 @@ public class Board {
   }
 
   public Board newBoardWithMove(int position, String mark) {
-    List<String> grid = makeMove(position, mark);
+    List<String> grid = makeMove(position - 1, mark);
     return new Board(grid);
   }
 

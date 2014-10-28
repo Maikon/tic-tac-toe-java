@@ -36,7 +36,7 @@ public class BoardTest {
   @Test
   public void listOfAvailableMoves() {
     List<Integer> moves = asList(0, 1, 2, 3, 4, 5, 6, 8);
-    Board boardWithOneMove = board.newBoardWithMove(7, "X");
+    Board boardWithOneMove = board.newBoardWithMove(8, "X");
     assertThat(boardWithOneMove.listOfMoves(), equalTo(moves));
   }
 
@@ -90,7 +90,7 @@ public class BoardTest {
 
   @Test
   public void currentMarkWhenBoardMovesIsEven() {
-    Board boardWithMove = board.newBoardWithMove(0, "X");
+    Board boardWithMove = board.newBoardWithMove(1, "X");
     assertThat(boardWithMove.currentMark(), is("O"));
   }
 

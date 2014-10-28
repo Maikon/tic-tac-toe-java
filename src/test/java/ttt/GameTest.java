@@ -18,7 +18,7 @@ public class GameTest {
 
   @Before
   public void setup() {
-    List<Integer> moves = asList(0, 1, 8);
+    List<Integer> moves = asList(1, 2, 9);
     display = new FakeDisplay(moves);
     Board board = new Board();
     game = new Game(board, display);
@@ -42,7 +42,7 @@ public class GameTest {
 
   @Test
   public void raisesExceptionGivenInvalidMove() {
-    display.setMoves(asList(9));
+    display.setMoves(asList(10));
     game.nextPlayerMakesMove();
     assertThat(display.showedInvalidMoveMessage(), is(true));
   }
@@ -50,7 +50,7 @@ public class GameTest {
 
   @Test
   public void samePlayerGoesAgainIfMoveInvalid() {
-    display.setMoves(asList(9, 0));
+    display.setMoves(asList(10, 1));
     game.nextPlayerMakesMove();
     game.nextPlayerMakesMove();
     List<String> resultedBoard = asList("X", "", "", "", "", "", "", "", "");
@@ -72,14 +72,14 @@ public class GameTest {
 
   @Test
   public void greetsThePlayerBeforeStarting(){
-    display.setMoves(asList(0, 5, 1, 4, 2));
+    display.setMoves(asList(1, 6, 2, 5, 3));
     game.start();
     assertThat(display.greetedPlayer(), is(true));
   }
 
   @Test
   public void showsTheBoard() {
-    display.setMoves(asList(0, 5, 1, 4, 2));
+    display.setMoves(asList(1, 6, 2, 5, 3));
     game.start();
     assertThat(display.showedBoard(), is(true));
   }
@@ -87,7 +87,7 @@ public class GameTest {
   @Test
   public void playsTheGameUntilOver() {
     Board board = new Board();
-    List<Integer> moves = asList(0, 5, 1, 4, 2);
+    List<Integer> moves = asList(1, 6, 2, 5, 3);
     Display display = new FakeDisplay(moves);
     Game game = new Game(board, display);
     game.start();
