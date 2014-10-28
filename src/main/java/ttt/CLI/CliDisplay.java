@@ -48,22 +48,37 @@ public class CliDisplay implements Display {
     String content = "";
     int counter = 0;
     for (Map.Entry<Integer, String> entry : grid.entrySet()) {
-      if (entry.getValue().equals("")){
-        content += entry.getKey().toString();
-      } else {
-        content += entry.getValue();
-      }
+      content = buildInitialString(content, entry);
       counter++;
-      if(counter % 3 == 0) {
-        content += "\n";
-        if(counter < 8) {
-          content += "--|---|--\n";
-        }
-      } else {
-        content += " | ";
-      }
+      content = addSpacingWithLineBreaks(content, counter);
     }
     outputStream.print(content);
+  }
+
+  private String addSpacingWithLineBreaks(String content, int counter) {
+    if(counter % 3 == 0) {
+      content += "\n";
+      content = addCustomLineBreaker(content, counter);
+    } else {
+      content += " | ";
+    }
+    return content;
+  }
+
+  private String addCustomLineBreaker(String content, int counter) {
+    if(counter < 8) {
+      content += "--|---|--\n";
+    }
+    return content;
+  }
+
+  private String buildInitialString(String content, Map.Entry<Integer, String> entry) {
+    if (entry.getValue().equals("")){
+      content += entry.getKey().toString();
+    } else {
+      content += entry.getValue();
+    }
+    return content;
   }
 
   @Override
