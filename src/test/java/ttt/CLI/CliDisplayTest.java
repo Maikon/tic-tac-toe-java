@@ -28,7 +28,7 @@ public class CliDisplayTest {
   @Test
   public void greetsThePlayers() {
     display.greetPlayers();
-    assertThat(output.toString(), containsString("Welcome to TicTacToe!"));
+    assertThat(output.toString(), containsString(display.WELCOMING_MESSAGE));
   }
 
   @Test
@@ -46,7 +46,7 @@ public class CliDisplayTest {
   @Test
   public void asksForAMove() {
     display.askForMove();
-    assertThat(output.toString(), containsString("Please choose a move from the available ones:"));
+    assertThat(output.toString(), containsString(display.MOVE_PROMPT));
   }
 
   @Test
@@ -66,7 +66,7 @@ public class CliDisplayTest {
   @Test
   public void printsInvalidMoveMessage() {
     display.showInvalidMoveMessage();
-    assertThat(output.toString(), containsString("--- Invalid Move ---"));
+    assertThat(output.toString(), containsString(display.INVALID_MOVE_MESSAGE));
   }
 
   @Test
@@ -80,6 +80,6 @@ public class CliDisplayTest {
   public void printsTheResultForADraw() {
     Board board = new Board(asList("X", "O", "X", "X", "O", "X", "O", "X", "O"));
     display.showResults(board);
-    assertThat(output.toString(), containsString("The game is a draw!"));
+    assertThat(output.toString(), containsString(display.DRAW_MESSAGE));
   }
 }

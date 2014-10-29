@@ -12,6 +12,10 @@ public class CliDisplay implements Display {
   private final PrintStream outputStream;
   private final BufferedReader inputStream;
   final int INVALID_MOVE = -1;
+  final String WELCOMING_MESSAGE = "Welcome to TicTacToe!";
+  final String MOVE_PROMPT = "Please choose a move from the available ones:";
+  final String INVALID_MOVE_MESSAGE = "--- Invalid Move ---";
+  final String DRAW_MESSAGE = "The game is a draw!";
 
   public CliDisplay(PrintStream outputStream, InputStream inputStream) {
     this.outputStream = outputStream;
@@ -20,17 +24,17 @@ public class CliDisplay implements Display {
 
   @Override
   public void greetPlayers() {
-    outputStream.println("Welcome to TicTacToe!");
+    outputStream.println(WELCOMING_MESSAGE);
   }
 
   @Override
   public void askForMove() {
-    outputStream.println("Please choose a move from the available ones:");
+    outputStream.println(MOVE_PROMPT);
   }
 
   @Override
   public void showInvalidMoveMessage() {
-    outputStream.println("--- Invalid Move ---");
+    outputStream.println(INVALID_MOVE_MESSAGE);
   }
 
   @Override
@@ -38,7 +42,7 @@ public class CliDisplay implements Display {
     if (board.hasWinner()) {
       outputStream.println(board.lastMoveMark() + " won the game!");
     } else {
-      outputStream.println("The game is a draw!");
+      outputStream.println(DRAW_MESSAGE);
     }
   }
 
