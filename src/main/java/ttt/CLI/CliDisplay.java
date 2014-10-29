@@ -28,6 +28,18 @@ public class CliDisplay implements Display {
   }
 
   @Override
+  public int getMove() {
+    askForMove();
+    String move;
+    try {
+      move = inputStream.readLine();
+      return Integer.parseInt(move);
+    } catch (IOException | NumberFormatException e) {
+      return INVALID_MOVE;
+    }
+  }
+
+  @Override
   public void askForMove() {
     outputStream.println(MOVE_PROMPT);
   }
@@ -83,17 +95,5 @@ public class CliDisplay implements Display {
       content += entry.getValue();
     }
     return content;
-  }
-
-  @Override
-  public int getMove() {
-    askForMove();
-    String move;
-    try {
-      move = inputStream.readLine();
-      return Integer.parseInt(move);
-    } catch (IOException | NumberFormatException e) {
-      return INVALID_MOVE;
-    }
   }
 }
