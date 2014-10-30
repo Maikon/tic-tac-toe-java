@@ -53,9 +53,55 @@ public class BoardTest {
   }
 
   @Test
-  public void whenBoardHasWinner() {
-    Board board = new Board(asList("X", "X", "X", "", "", "", "", "", ""));
-    assertThat(board.hasWinner(), is(true));
+  public void whenBoardHasWinnerInRows() {
+    Board boardFirstRowWin = new Board(asList("X", "X", "X",
+                                              "", "", "",
+                                              "", "", ""));
+
+    Board boardSecondRowWin = new Board(asList("", "", "",
+                                               "X", "X", "X",
+                                               "", "", ""));
+
+    Board boardThirdRowWin = new Board(asList("", "", "",
+                                              "", "", "",
+                                              "X", "X", "X"));
+
+    assertThat(boardFirstRowWin.hasWinner(), is(true));
+    assertThat(boardSecondRowWin.hasWinner(), is(true));
+    assertThat(boardThirdRowWin.hasWinner(), is(true));
+  }
+
+  @Test
+  public void whenBoardHasWinnerInColumns() {
+    Board boardFirstColWin = new Board(asList("X", "", "",
+                                              "X", "", "",
+                                              "X", "", ""));
+
+    Board boardSecondColWin = new Board(asList("", "X", "",
+                                               "", "X", "",
+                                               "", "X", ""));
+
+    Board boardThirdColWin = new Board(asList("", "", "X",
+                                              "", "", "X",
+                                              "", "", "X"));
+
+    assertThat(boardFirstColWin.hasWinner(), is(true));
+    assertThat(boardSecondColWin.hasWinner(), is(true));
+    assertThat(boardThirdColWin.hasWinner(), is(true));
+  }
+
+  @Test
+  public void whenBoardHasWinnerInDiagonals() {
+    Board leftDiagonalWin = new Board(asList("X", "", "",
+                                             "", "X", "",
+                                             "", "", "X"));
+
+    Board rightDiagonalWin = new Board(asList("", "", "X",
+                                              "", "X", "",
+                                              "X", "", ""));
+
+    assertThat(leftDiagonalWin.hasWinner(), is(true));
+    assertThat(rightDiagonalWin.hasWinner(), is(true));
   }
 
   @Test
@@ -65,7 +111,9 @@ public class BoardTest {
 
   @Test
   public void whenIsADraw() {
-    Board board = new Board(asList("X", "O", "X", "X", "O", "X", "O", "X", "O"));
+    Board board = new Board(asList("X", "O", "X",
+                                   "X", "O", "X",
+                                   "O", "X", "O"));
     assertThat(board.hasDraw(), is(true));
   }
 
@@ -76,8 +124,12 @@ public class BoardTest {
 
   @Test
   public void whenInEndState() {
-    Board boardWithDraw = new Board(asList("X", "O", "X", "O", "O", "X", "O", "X", "O"));
-    Board boardWithWin = new Board(asList("X", "X", "X", "", "", "", "", "", ""));
+    Board boardWithDraw = new Board(asList("X", "O", "X",
+                                           "O", "O", "X",
+                                           "O", "X", "O"));
+    Board boardWithWin = new Board(asList("X", "X", "X",
+                                          "", "", "",
+                                          "", "", ""));
 
     assertThat(boardWithDraw.isOver(), is(true));
     assertThat(boardWithWin.isOver(), is(true));
@@ -96,7 +148,9 @@ public class BoardTest {
 
   @Test
   public void markOfLastMoveMade() {
-    Board boardWithTwoMoves = new Board(asList("X", "O", "", "", "", "", "", "", ""));
+    Board boardWithTwoMoves = new Board(asList("X", "O", "",
+                                               "", "", "",
+                                               "", "", ""));
     assertThat(boardWithTwoMoves.lastMoveMark(), is("O"));
   }
 
