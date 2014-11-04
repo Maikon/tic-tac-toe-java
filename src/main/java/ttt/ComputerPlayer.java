@@ -1,54 +1,66 @@
 package ttt;
 
-public class ComputerPlayer {
-  private String mark;
-  private String opponent;
+public class ComputerPlayer implements Player {
+  public String mark;
 
   public void chooseMark(Board board) {
     if (availableMovesCountIsEven(board)) {
       mark = "O";
-      opponent = "X";
     } else {
       mark = "X";
-      opponent = "O";
     }
   }
 
-  public int bestMove(Board board) {
+  @Override
+  public Board makeMove(Board board) {
     if (mark == null) {
       chooseMark(board);
     }
-    MoveScore bestScore = getHighestRatedMove(board);
-    return bestScore.getMove();
+    return board.newBoardWithMove(bestMove(board), mark);
   }
 
-  private MoveScore getHighestRatedMove(Board board) {
-    MoveScore bestScoreAndMove = new MoveScore(-10, -1);
-    for (Integer move : board.listOfMoves()) {
-      Board newBoard = board.newBoardWithMove(move + 1, mark);
-      if (newBoard.winFor(mark)) {
-        if (scoreForWin(newBoard) > bestScoreAndMove.getScore()) {
-          bestScoreAndMove = new MoveScore(scoreForWin(newBoard), move);
-        }
-      } else if (newBoard.winFor(opponent)) {
-        if (-scoreForWin(newBoard) > bestScoreAndMove.getScore()) {
-          bestScoreAndMove = new MoveScore(-scoreForWin(newBoard), move);
-        }
-      } else if (newBoard.hasDraw()) {
-        if (0 > bestScoreAndMove.getScore()) {
-          bestScoreAndMove = new MoveScore(0, move);
-        }
-      } else {
-        if (getHighestRatedMove(newBoard).getScore() > bestScoreAndMove.getScore()) {
-          bestScoreAndMove = new MoveScore(getHighestRatedMove(newBoard).getScore(), move);
-        }
+  public int bestMove(Board board) {
+    return negamax(board, mark).getMove();
+  }
+
+  private MoveScore negamax(Board board, String mark) {
+    double bestValue = -1.0;
+    int bestMove = -1;
+
+    if (board.isOver()) {
+      double result = scoreFor(board, mark);
+      return new MoveScore(result, bestMove);
+    }
+
+    for (Integer move : board.listOfMovesIndexOne()) {
+      Board newBoard = board.newBoardWithMove(move, board.currentMark());
+      double value = -negamax(newBoard, getOpponent(mark)).getScore();
+      if (value > bestValue) {
+        bestValue = value;
+        bestMove = move;
       }
     }
-    return bestScoreAndMove;
+    return new MoveScore(bestValue, bestMove);
   }
 
-  private int scoreForWin(Board board) {
-    return 10 + board.numberOfAvailableMoves();
+  private String getOpponent(String mark) {
+    if (mark.equals("X")) {
+      return "O";
+    } else {
+      return "X";
+    }
+  }
+
+  private double scoreFor(Board board, String mark) {
+    double score = 1.0 / (9 - board.numberOfAvailableMoves());
+
+    if (board.hasDraw()) {
+      return 0;
+    } else if (board.lastMoveMark().equals(mark)) {
+      return score;
+    }
+
+    return -score;
   }
 
   public String getMark() {
@@ -60,15 +72,15 @@ public class ComputerPlayer {
   }
 
   private class MoveScore {
-    private final Integer score;
+    private final double score;
     private final Integer move;
 
-    public MoveScore(Integer score, Integer move) {
+    public MoveScore(double score, Integer move) {
       this.score = score;
       this.move = move;
     }
 
-    public Integer getScore() {
+    public double getScore() {
       return score;
     }
 
