@@ -15,6 +15,16 @@ public class Game {
     this.display = display;
   }
 
+  public void start() {
+    display.greetPlayers();
+    setTwoPlayers();
+    while (!isOver()) {
+      display.show(getBoard());
+      nextPlayerMakesMove();
+    }
+    display.showResults(getBoard());
+  }
+
   public void setTwoPlayers() {
     PlayerFactory factory = new PlayerFactory(display);
     players = factory.buildHumanPlayers();
@@ -39,16 +49,6 @@ public class Game {
 
   public boolean isOver() {
     return getBoard().isOver();
-  }
-
-  public void start() {
-    display.greetPlayers();
-    setTwoPlayers();
-    while (!isOver()) {
-      display.show(getBoard());
-      nextPlayerMakesMove();
-    }
-    display.showResults(getBoard());
   }
 
   private void currentPlayerMakesMove() {
