@@ -12,10 +12,17 @@ public class CliDisplay implements Display {
   private final PrintStream outputStream;
   private final BufferedReader inputStream;
   final int INVALID_MOVE = -1;
+  final String DIVIDER = "*******************************";
   final String WELCOMING_MESSAGE = "Welcome to TicTacToe!";
   final String MOVE_PROMPT = "Please choose a move from the available ones:";
   final String INVALID_MOVE_MESSAGE = "--- Invalid Move ---";
+  final String INVALID_GAME_CHOICE = "Please choose a valid game type: ";
   final String DRAW_MESSAGE = "The game is a draw!";
+  final String GAME_OPTIONS = "Please choose a game type from 1-4\n" +
+                              " " + validGameOptions().get("1") +
+                              " " + validGameOptions().get("2") +
+                              " " + validGameOptions().get("3") +
+                              " " + validGameOptions().get("4");
 
   public CliDisplay(PrintStream outputStream, InputStream inputStream) {
     this.outputStream = outputStream;
@@ -59,6 +66,26 @@ public class CliDisplay implements Display {
   }
 
   @Override
+  public void showGameOptions() {
+    outputStream.println(GAME_OPTIONS);
+  }
+
+  @Override
+  public String getGameChoice() {
+    String move;
+    try {
+      move = inputStream.readLine();
+      while (!validGameOptions().containsKey(move)) {
+        outputStream.println(INVALID_GAME_CHOICE);
+        move = inputStream.readLine();
+      }
+      return move;
+    } catch (IOException e) {
+      return "invalid";
+    }
+  }
+
+  @Override
   public void show(Board board) {
     HashMap<Integer, String> grid = board.getPositions();
     String content = "";
@@ -68,6 +95,7 @@ public class CliDisplay implements Display {
       counter++;
       content = addSpacingWithLineBreaks(content, counter);
     }
+    outputStream.println(DIVIDER);
     outputStream.print(content);
   }
 
@@ -95,5 +123,14 @@ public class CliDisplay implements Display {
       content += entry.getValue();
     }
     return content;
+  }
+
+  private Map<String, String> validGameOptions() {
+    Map<String, String> combinations = new HashMap<>();
+    combinations.put("1", "1. Human Vs Human");
+    combinations.put("2", "2. Human Vs Computer");
+    combinations.put("3", "3. Computer Vs Human");
+    combinations.put("4", "4. Computer Vs Computer");
+    return combinations;
   }
 }

@@ -7,16 +7,19 @@ import java.util.List;
 
 public class Game {
   private final Display display;
+  private final PlayerFactory factory;
   private Board board;
-  private List<HumanPlayer> players;
+  private List<Player> players;
 
   public Game(Board board, Display display) {
     this.board = board;
     this.display = display;
+    factory = new PlayerFactory(display);
   }
 
   public void start() {
     display.greetPlayers();
+    display.showGameOptions();
     setTwoPlayers();
     while (!isOver()) {
       display.show(getBoard());
@@ -26,8 +29,7 @@ public class Game {
   }
 
   public void setTwoPlayers() {
-    PlayerFactory factory = new PlayerFactory(display);
-    players = factory.buildHumanPlayers();
+    players = factory.getPlayersForChoice(display.getGameChoice());
   }
 
   public void nextPlayerMakesMove() {
@@ -39,7 +41,7 @@ public class Game {
     }
   }
 
-  public List<HumanPlayer> getPlayers() {
+  public List<Player> getPlayers() {
     return players;
   }
 

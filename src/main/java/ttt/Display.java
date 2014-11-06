@@ -12,4 +12,8 @@ public interface Display {
   void showInvalidMoveMessage();
 
   void showResults(Board board);
+
+  void showGameOptions();
+
+  String getGameChoice();
 }

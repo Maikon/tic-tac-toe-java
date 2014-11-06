@@ -19,15 +19,11 @@ public class GameTest {
   @Before
   public void setup() {
     List<Integer> moves = asList(1, 2, 9);
-    display = new FakeDisplay(moves);
+    List<String> choices = asList("1");
+    display = new FakeDisplay(moves, choices);
     Board board = new Board();
     game = new Game(board, display);
     game.setTwoPlayers();
-  }
-
-  @Test
-  public void getsTwoPlayers() {
-    assertThat(game.getPlayers().size(), is(2));
   }
 
   @Test
@@ -72,33 +68,59 @@ public class GameTest {
 
   @Test
   public void greetsThePlayerBeforeStarting(){
-    display.setMoves(asList(1, 6, 2, 5, 3));
+    setMovesAndGameChoice();
     game.start();
     assertThat(display.greetedPlayer(), is(true));
   }
 
   @Test
+  public void showsTheGameOptions(){
+    setMovesAndGameChoice();
+    game.start();
+    assertThat(display.showedOptions(), is(true));
+  }
+
+  @Test
   public void showsTheBoard() {
-    display.setMoves(asList(1, 6, 2, 5, 3));
+    setMovesAndGameChoice();
     game.start();
     assertThat(display.showedBoard(), is(true));
   }
 
   @Test
   public void showResults() {
-    display.setMoves(asList(1, 6, 2, 5, 3));
+    setMovesAndGameChoice();
     game.start();
     assertThat(display.showedResults(), is(true));
   }
 
   @Test
+  public void getValidGameChoiceFromDisplay() {
+    display.setGameChoices(asList("1"));
+    game.setTwoPlayers();
+    assertThat(display.gotValidChoice(), is(true));
+  }
+
+  @Test
   public void playsTheGameUntilOver() {
     Board board = new Board();
-    List<Integer> moves = asList(1, 6, 2, 5, 3);
-    Display display = new FakeDisplay(moves);
+    FakeDisplay display = createDisplay(winningMoves(), asList("1"));
     Game game = new Game(board, display);
     game.start();
     assertThat(game.isOver(), is(true));
+  }
+
+  private FakeDisplay createDisplay(List<Integer> moves, List<String> choices) {
+    return new FakeDisplay(moves, choices);
+  }
+
+  private void setMovesAndGameChoice() {
+    display.setMoves(winningMoves());
+    display.setGameChoices(asList("1"));
+  }
+
+  private List<Integer> winningMoves() {
+    return asList(1, 6, 2, 5, 3);
   }
 }
 

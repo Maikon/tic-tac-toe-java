@@ -40,7 +40,7 @@ public class CliDisplayTest {
                       "4 | 5 | 6\n" +
                       "--|---|--\n" +
                       "7 | 8 | 9\n";
-    assertThat(output.toString(), is(expected));
+    assertThat(output.toString(), containsString(expected));
   }
 
   @Test
@@ -81,5 +81,26 @@ public class CliDisplayTest {
     Board board = new Board(asList("X", "O", "X", "X", "O", "X", "O", "X", "O"));
     display.showResults(board);
     assertThat(output.toString(), containsString(display.DRAW_MESSAGE));
+  }
+
+  @Test
+  public void returnsValidGameChoiceFromUser() {
+    InputStream inputStream = new ByteArrayInputStream("invalid\n2\n".getBytes());
+    CliDisplay display = new CliDisplay(printStream, inputStream);
+    assertThat(display.getGameChoice(), is("2"));
+  }
+
+  @Test
+  public void showsInvalidChoiceMessage() {
+    InputStream inputStream = new ByteArrayInputStream("invalid\n2\n".getBytes());
+    CliDisplay display = new CliDisplay(printStream, inputStream);
+    display.getGameChoice();
+    assertThat(output.toString(), containsString(display.INVALID_GAME_CHOICE));
+  }
+
+  @Test
+  public void showAllGameOptions() {
+    display.showGameOptions();
+    assertThat(output.toString(), containsString(display.GAME_OPTIONS));
   }
 }
