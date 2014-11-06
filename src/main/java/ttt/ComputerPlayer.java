@@ -3,24 +3,24 @@ package ttt;
 public class ComputerPlayer implements Player {
   public String mark;
 
+  @Override
+  public Board makeMove(Board board) {
+    return board.newBoardWithMove(bestMove(board), mark);
+  }
+
+  public int bestMove(Board board) {
+    if (mark == null) {
+      chooseMark(board);
+    }
+    return negamax(board, mark).getMove();
+  }
+
   public void chooseMark(Board board) {
     if (availableMovesCountIsEven(board)) {
       mark = "O";
     } else {
       mark = "X";
     }
-  }
-
-  @Override
-  public Board makeMove(Board board) {
-    if (mark == null) {
-      chooseMark(board);
-    }
-    return board.newBoardWithMove(bestMove(board), mark);
-  }
-
-  public int bestMove(Board board) {
-    return negamax(board, mark).getMove();
   }
 
   private MoveScore negamax(Board board, String mark) {

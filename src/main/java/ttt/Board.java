@@ -48,6 +48,12 @@ public class Board {
     return moves;
   }
 
+  public List<Integer> listOfMovesIndexOne() {
+    List<Integer> moves = new LinkedList<>();
+    addAvailableMovesPlusOne(moves);
+    return moves;
+  }
+
   public boolean isOver() {
     return hasDraw() || hasWinner();
   }
@@ -85,6 +91,14 @@ public class Board {
       gridPairs.put(i + 1, grid.get(i));
     }
     return gridPairs;
+  }
+
+  private void addAvailableMovesPlusOne(List<Integer> moves) {
+    for(int i=0; i < grid.size(); i++) {
+      if(grid.get(i).equals("")) {
+        moves.add(i + 1);
+      }
+    }
   }
 
   private void addAvailableMoves(List<Integer> moves) {
