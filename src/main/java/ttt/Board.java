@@ -34,10 +34,6 @@ public class Board {
     return totalAvailableMovesIsEven() ? "O" : "X";
   }
 
-  public boolean winFor(String mark) {
-    return hasWinner() && lastMoveMark().equals(mark);
-  }
-
   public int numberOfAvailableMoves() {
     return listOfMoves().size();
   }
