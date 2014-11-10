@@ -132,9 +132,15 @@ public class Board {
   }
 
   private List<Line> getColumns() {
-    return asList(getLine(0, 3, 6),
-                  getLine(1, 4, 7),
-                  getLine(2, 5, 8));
+    List<Line> columns = new ArrayList<>();
+    for (int i = 0; i < size; i++) {
+      List<String> column = new ArrayList<>();
+      for (Line row : getRows()) {
+        column.add(row.getElementAt(i));
+      }
+      columns.add(new Line(column));
+    }
+    return columns;
   }
 
   private List<Line> getDiagonals() {

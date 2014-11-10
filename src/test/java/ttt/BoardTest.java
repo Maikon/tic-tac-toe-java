@@ -67,6 +67,30 @@ public class BoardTest {
   }
 
   @Test
+  public void checksForWinnerInColumnsOnFourByFour() {
+    Board boardColOne = new Board(asList("X", "", "", "",
+                                         "X", "", "", "",
+                                         "X", "", "", "",
+                                         "X", "", "", ""));
+    Board boardColTwo = new Board(asList("", "X", "", "",
+                                         "", "X", "", "",
+                                         "", "X", "", "",
+                                         "", "X", "", ""));
+    Board boardColThree = new Board(asList("", "", "X", "",
+                                           "", "", "X", "",
+                                           "", "", "X", "",
+                                           "", "", "X", ""));
+    Board boardColFour = new Board(asList("", "", "", "X",
+                                          "", "", "", "X",
+                                          "", "", "", "X",
+                                          "", "", "", "X"));
+    assertThat(boardColOne.hasWinner(), is(true));
+    assertThat(boardColTwo.hasWinner(), is(true));
+    assertThat(boardColThree.hasWinner(), is(true));
+    assertThat(boardColFour.hasWinner(), is(true));
+  }
+
+  @Test
   public void newBoardWithMovesMade() {
     Board boardWithOneMove = board.newBoardWithMove(7, "X");
     Board boardWithTwoMoves = boardWithOneMove.newBoardWithMove(8, "X");

@@ -9,6 +9,10 @@ public class Line {
     this.positions = positions;
   }
 
+  public String getElementAt(int index) {
+    return positions.get(index);
+  }
+
   public boolean hasWinner() {
     return positionsAreNotEmpty() && positionsHaveSameMark();
   }
