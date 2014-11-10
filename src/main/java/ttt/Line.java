@@ -3,14 +3,10 @@ package ttt;
 import java.util.List;
 
 public class Line {
-  private String first;
-  private String second;
-  private String third;
+  private List<String> positions;
 
   public Line(List<String> positions) {
-    first = positions.get(0);
-    second = positions.get(1);
-    third = positions.get(2);
+    this.positions = positions;
   }
 
   public boolean hasWinner() {
@@ -18,15 +14,14 @@ public class Line {
   }
 
   private boolean positionsHaveSameMark() {
-    return first.equals(second) && second.equals(third);
-  }
-
-  @Override
-  public String toString() {
-    return first + " | " + second + " | " + third;
+    return positions.stream()
+                    .allMatch(position -> position.equals(positions.get(0)));
   }
 
   private boolean positionsAreNotEmpty() {
-    return !(first.isEmpty() || second.isEmpty() || third.isEmpty());
+    return positions.stream()
+                    .filter(position -> !position.isEmpty())
+                    .findAny()
+                    .isPresent();
   }
 }
