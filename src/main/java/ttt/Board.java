@@ -4,8 +4,6 @@ import ttt.Exceptions.InvalidMoveException;
 
 import java.util.*;
 
-import static java.util.Arrays.asList;
-
 public class Board {
   private int size;
   private List<String> grid;
@@ -144,13 +142,18 @@ public class Board {
   }
 
   private List<Line> getDiagonals() {
-    return asList(getLine(0, 4, 8),
-                  getLine(2, 4, 6));
-  }
-
-  private Line getLine(int first, int second, int third) {
-    List<String> positions = asList(grid.get(first), grid.get(second), grid.get(third));
-    return new Line(positions);
+    List<Line> diagonals = new ArrayList<>();
+    List<String> leftDiagonal = new ArrayList<>();
+    List<String> rightDiagonal = new ArrayList<>();
+    int counter = size - 1;
+    for (int i = 0; i < size; i++) {
+      leftDiagonal.add(getRows().get(i).getElementAt(i));
+      rightDiagonal.add(getRows().get(i).getElementAt(counter));
+      counter -= 1;
+    }
+    diagonals.add(new Line(leftDiagonal));
+    diagonals.add(new Line(rightDiagonal));
+    return diagonals;
   }
 
   private Line getLineRange(int startIndex, int count) {

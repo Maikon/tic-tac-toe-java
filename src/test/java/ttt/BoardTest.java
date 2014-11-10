@@ -91,6 +91,20 @@ public class BoardTest {
   }
 
   @Test
+  public void checksForWinnerInDiagonalsOnFourByFour() {
+    Board boardDiagonalOne = new Board(asList("X", "", "", "",
+                                              "", "X", "", "",
+                                              "", "", "X", "",
+                                              "", "", "", "X"));
+    Board boardDiagonalTwo = new Board(asList("", "", "", "X",
+                                              "", "", "X", "",
+                                              "", "X", "", "",
+                                              "X", "", "", ""));
+    assertThat(boardDiagonalOne.hasWinner(), is(true));
+    assertThat(boardDiagonalTwo.hasWinner(), is(true));
+  }
+
+  @Test
   public void newBoardWithMovesMade() {
     Board boardWithOneMove = board.newBoardWithMove(7, "X");
     Board boardWithTwoMoves = boardWithOneMove.newBoardWithMove(8, "X");
