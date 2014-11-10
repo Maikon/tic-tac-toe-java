@@ -13,7 +13,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BoardTest {
 
-  int defaultAvailableMoves = 9;
   private Board board;
 
   @Before
@@ -22,15 +21,56 @@ public class BoardTest {
   }
 
   @Test
-  public void hasNineMoves() {
-    assertThat(board.numberOfAvailableMoves(), equalTo(defaultAvailableMoves));
+  public void supportsThreeByThree() {
+    assertThat(board.numberOfAvailableMoves(), is(9));
+  }
+
+  @Test
+  public void supportsFourByFour() {
+    Board board = new Board(4);
+    assertThat(board.numberOfAvailableMoves(), is(16));
+  }
+
+  @Test
+  public void makeMoveOnFourByFour() {
+    Board board = new Board(4);
+    Board boardWithMove = new Board(asList("", "", "", "",
+                                           "", "", "", "",
+                                           "", "", "", "",
+                                           "", "", "X", ""));
+    Board newBoard = board.newBoardWithMove(15, "X");
+    assertThat(newBoard.getGrid(), equalTo(boardWithMove.getGrid()));
+  }
+
+  @Test
+  public void checksForWinnerInRowsOnFourByFour() {
+    Board boardRowOne = new Board(asList("X", "X", "X", "X",
+                                         "", "", "", "",
+                                         "", "", "", "",
+                                         "", "", "", ""));
+    Board boardRowTwo = new Board(asList("", "", "", "",
+                                         "X", "X", "X", "X",
+                                         "", "", "", "",
+                                         "", "", "", ""));
+    Board boardRowThree = new Board(asList("", "", "", "",
+                                           "", "", "", "",
+                                           "X", "X", "X", "X",
+                                           "", "", "", ""));
+    Board boardRowFour = new Board(asList("", "", "", "",
+                                          "", "", "", "",
+                                          "", "", "", "",
+                                          "X", "X", "X", "X"));
+    assertThat(boardRowOne.hasWinner(), is(true));
+    assertThat(boardRowTwo.hasWinner(), is(true));
+    assertThat(boardRowThree.hasWinner(), is(true));
+    assertThat(boardRowFour.hasWinner(), is(true));
   }
 
   @Test
   public void newBoardWithMovesMade() {
     Board boardWithOneMove = board.newBoardWithMove(7, "X");
     Board boardWithTwoMoves = boardWithOneMove.newBoardWithMove(8, "X");
-    assertThat(boardWithTwoMoves.numberOfAvailableMoves(), equalTo(defaultAvailableMoves - 2));
+    assertThat(boardWithTwoMoves.numberOfAvailableMoves(), is(7));
   }
 
   @Test

@@ -7,14 +7,21 @@ import java.util.*;
 import static java.util.Arrays.asList;
 
 public class Board {
+  private int size;
   private List<String> grid;
 
   public Board() {
     this(Collections.nCopies(9, ""));
   }
 
+  public Board(int size) {
+    this(Collections.nCopies(size * size, ""));
+    this.size = size;
+  }
+
   public Board(List<String> grid) {
     this.grid = grid;
+    this.size = (int) Math.sqrt(grid.size());
   }
 
   public List<String> getGrid() {
@@ -76,9 +83,11 @@ public class Board {
   }
 
   public List<Line> getRows() {
-    return asList(getLine(0, 1, 2),
-                  getLine(3, 4, 5),
-                  getLine(6, 7, 8));
+    List<Line> rows = new ArrayList<>();
+    for (int i = 0; i < size; i++) {
+      rows.add(getLineRange(i * size, size - 1));
+    }
+    return rows;
   }
 
   public HashMap<Integer, String> getPositions() {
@@ -135,6 +144,15 @@ public class Board {
 
   private Line getLine(int first, int second, int third) {
     List<String> positions = asList(grid.get(first), grid.get(second), grid.get(third));
+    return new Line(positions);
+  }
+
+  private Line getLineRange(int startIndex, int count) {
+    List<String> positions = new ArrayList<>();
+    int endIndex = startIndex + count;
+    for (int position = startIndex; position <= endIndex; position++) {
+      positions.add(grid.get(position));
+    }
     return new Line(positions);
   }
 }
