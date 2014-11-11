@@ -124,4 +124,14 @@ public class ComputerPlayerTest {
     ComputerPlayer computer = new ComputerPlayer();
     assertThat(computer.bestMove(board), is(1));
   }
+
+  @Test
+  public void blocksWinIn4x4() {
+    Board board = new Board(asList("X", "", "O", "",
+                                   "", "X", "", "",
+                                   "O", "", "X", "",
+                                   "", "", "", ""));
+    ComputerPlayer computer = new ComputerPlayer();
+    assertThat(computer.bestMove(board), is(16));
+  }
 }
