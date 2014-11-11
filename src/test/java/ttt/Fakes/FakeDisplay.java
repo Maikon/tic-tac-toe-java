@@ -75,6 +75,11 @@ public class FakeDisplay implements Display {
     return gameChoices.pop();
   }
 
+  @Override
+  public int getBoardChoice() {
+    return 0;
+  }
+
   public boolean greetedPlayer() {
     return greeted;
   }

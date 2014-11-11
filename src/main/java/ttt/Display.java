@@ -16,4 +16,6 @@ public interface Display {
   void showGameOptions();
 
   String getGameChoice();
+
+  int getBoardChoice();
 }

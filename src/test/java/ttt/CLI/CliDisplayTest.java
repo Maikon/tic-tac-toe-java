@@ -117,4 +117,35 @@ public class CliDisplayTest {
     display.showGameOptions();
     assertThat(output.toString(), containsString(display.GAME_OPTIONS));
   }
+
+  @Test
+  public void asksForBoardSizeChoice() {
+    display.askForBoardChoice();
+    assertThat(output.toString(), containsString(display.BOARD_CHOICE_MESSAGE));
+  }
+
+  @Test
+  public void returnsChoiceOfBoardFor3x3() {
+    InputStream inputStream = new ByteArrayInputStream("1\n".getBytes());
+    CliDisplay display = new CliDisplay(printStream, inputStream);
+
+    assertThat(display.getBoardChoice(), is(3));
+  }
+
+  @Test
+  public void showsInvalidBoardChoice() {
+    InputStream inputStream = new ByteArrayInputStream("invalid\n1\n".getBytes());
+    CliDisplay display = new CliDisplay(printStream, inputStream);
+    display.getBoardChoice();
+
+    assertThat(output.toString(), containsString(display.INVALID_BOARD_CHOICE));
+  }
+
+  @Test
+  public void returnsValidChoiceOfBoardFor4x4() {
+    InputStream inputStream = new ByteArrayInputStream("invalid\n2\n".getBytes());
+    CliDisplay display = new CliDisplay(printStream, inputStream);
+
+    assertThat(display.getBoardChoice(), is(4));
+  }
 }

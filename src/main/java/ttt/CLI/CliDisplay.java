@@ -13,6 +13,8 @@ public class CliDisplay implements Display {
   private final BufferedReader inputStream;
   final int INVALID_MOVE = -1;
   final String DIVIDER = "*******************************";
+  final String BOARD_CHOICE_MESSAGE = "Please choose 1 or 2 for board size: 1. 3x3 2. 4x4";
+  final String INVALID_BOARD_CHOICE = "Please choose 1 for 3x3 or 2 for 4x4:";
   final String WELCOMING_MESSAGE = "Welcome to TicTacToe!";
   final String MOVE_PROMPT = "Please choose a move from the available ones:";
   final String INVALID_MOVE_MESSAGE = "--- Invalid Move ---";
@@ -65,6 +67,10 @@ public class CliDisplay implements Display {
     }
   }
 
+  public void askForBoardChoice() {
+    outputStream.println(BOARD_CHOICE_MESSAGE);
+  }
+
   @Override
   public void showGameOptions() {
     outputStream.println(GAME_OPTIONS);
@@ -83,6 +89,22 @@ public class CliDisplay implements Display {
     } catch (IOException e) {
       return "invalid";
     }
+  }
+
+  @Override
+  public int getBoardChoice() {
+    String choice;
+    askForBoardChoice();
+    try {
+      choice = inputStream.readLine();
+      while(!validBoardChoices().containsKey(choice)) {
+        outputStream.println(INVALID_BOARD_CHOICE);
+        choice = inputStream.readLine();
+      }
+    } catch (IOException e) {
+      choice = "";
+    }
+    return validBoardChoices().get(choice);
   }
 
   @Override
@@ -134,5 +156,12 @@ public class CliDisplay implements Display {
     combinations.put("3", "3. Computer Vs Human");
     combinations.put("4", "4. Computer Vs Computer");
     return combinations;
+  }
+
+  private Map<String, Integer> validBoardChoices() {
+    Map<String, Integer> options = new HashMap<>();
+    options.put("1", 3);
+    options.put("2", 4);
+    return options;
   }
 }
