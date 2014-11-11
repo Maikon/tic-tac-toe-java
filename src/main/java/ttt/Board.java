@@ -72,14 +72,6 @@ public class Board {
     return !hasWinner() && listOfMoves().isEmpty();
   }
 
-  public List<Line> getCombinations() {
-    List<Line> combos = new ArrayList<>();
-    combos.addAll(getRows());
-    combos.addAll(getColumns());
-    combos.addAll(getDiagonals());
-    return combos;
-  }
-
   public List<Line> getRows() {
     List<Line> rows = new ArrayList<>();
     for (int i = 0; i < size; i++) {
@@ -94,6 +86,14 @@ public class Board {
       gridPairs.put(i + 1, grid.get(i));
     }
     return gridPairs;
+  }
+
+  private List<Line> getCombinations() {
+    List<Line> combos = new ArrayList<>();
+    combos.addAll(getRows());
+    combos.addAll(getColumns());
+    combos.addAll(getDiagonals());
+    return combos;
   }
 
   private void addAvailableMovesPlusOne(List<Integer> moves) {
