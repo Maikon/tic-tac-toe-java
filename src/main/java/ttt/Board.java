@@ -26,6 +26,10 @@ public class Board {
     return grid;
   }
 
+  public int getSize() {
+    return size;
+  }
+
   public Board newBoardWithMove(int position, String mark) {
     List<String> grid = makeMove(position - 1, mark);
     return new Board(grid);
@@ -82,8 +86,8 @@ public class Board {
 
   public HashMap<Integer, String> getPositions() {
     HashMap<Integer, String> gridPairs = new HashMap<>();
-    for (int i = 0; i < 9; i++) {
-      gridPairs.put(i + 1, grid.get(i));
+    for (int i = 0; i < getGrid().size(); i++) {
+      gridPairs.put(i + 1, getGrid().get(i));
     }
     return gridPairs;
   }
@@ -97,16 +101,16 @@ public class Board {
   }
 
   private void addAvailableMovesPlusOne(List<Integer> moves) {
-    for(int i=0; i < grid.size(); i++) {
-      if(grid.get(i).equals("")) {
+    for(int i=0; i < getGrid().size(); i++) {
+      if(getGrid().get(i).equals("")) {
         moves.add(i + 1);
       }
     }
   }
 
   private void addAvailableMoves(List<Integer> moves) {
-    for(int i=0; i < grid.size(); i++) {
-      if(grid.get(i).equals("")) {
+    for(int i=0; i < getGrid().size(); i++) {
+      if(getGrid().get(i).equals("")) {
         moves.add(i);
       }
     }
@@ -117,7 +121,7 @@ public class Board {
   }
 
   private List<String> makeMove(int position, String mark) {
-    List<String> newGrid = new ArrayList<>(grid);
+    List<String> newGrid = new ArrayList<>(getGrid());
     if (invalidMove(position)) {
       throw new InvalidMoveException();
     }
@@ -160,7 +164,7 @@ public class Board {
     List<String> positions = new ArrayList<>();
     int endIndex = startIndex + count;
     for (int position = startIndex; position <= endIndex; position++) {
-      positions.add(grid.get(position));
+      positions.add(getGrid().get(position));
     }
     return new Line(positions);
   }

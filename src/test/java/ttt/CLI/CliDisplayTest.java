@@ -32,14 +32,28 @@ public class CliDisplayTest {
   }
 
   @Test
-  public void printsTheBoard() {
-    Board emptyBoard = new Board();
+  public void prints3x3Board() {
+    Board emptyBoard = new Board(3);
     display.show(emptyBoard);
-    String expected = "1 | 2 | 3\n" +
-                      "--|---|--\n" +
-                      "4 | 5 | 6\n" +
-                      "--|---|--\n" +
-                      "7 | 8 | 9\n";
+    String expected = "1  |  2  |  3\n" +
+                      "---|-----|---\n" +
+                      "4  |  5  |  6\n" +
+                      "---|-----|---\n" +
+                      "7  |  8  |  9\n";
+    assertThat(output.toString(), containsString(expected));
+  }
+
+  @Test
+  public void prints4x4Board() {
+    Board emptyBoard = new Board(4);
+    display.show(emptyBoard);
+    String expected = "1  |  2  |  3  |  4\n" +
+                      "---|-----|-----|---\n" +
+                      "5  |  6  |  7  |  8\n" +
+                      "---|-----|-----|---\n" +
+                      "9  |  10  |  11  |  12\n" +
+                      "---|-----|-----|---\n" +
+                      "13  |  14  |  15  |  16\n";
     assertThat(output.toString(), containsString(expected));
   }
 

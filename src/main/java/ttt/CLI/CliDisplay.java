@@ -93,25 +93,27 @@ public class CliDisplay implements Display {
     for (Map.Entry<Integer, String> entry : grid.entrySet()) {
       content = buildInitialString(content, entry);
       counter++;
-      content = addSpacingWithLineBreaks(content, counter);
+      content = addSpacingWithLineBreaks(board, content, counter);
     }
     outputStream.println(DIVIDER);
     outputStream.print(content);
   }
 
-  private String addSpacingWithLineBreaks(String content, int counter) {
-    if(counter % 3 == 0) {
+  private String addSpacingWithLineBreaks(Board board, String content, int counter) {
+    if(counter % board.getSize() == 0) {
       content += "\n";
-      content = addCustomLineBreaker(content, counter);
+      content = addCustomLineBreaker(board, content, counter);
     } else {
-      content += " | ";
+      content += "  |  ";
     }
     return content;
   }
 
-  private String addCustomLineBreaker(String content, int counter) {
-    if(counter < 8) {
-      content += "--|---|--\n";
+  private String addCustomLineBreaker(Board board, String content, int counter) {
+    if (board.getGrid().size() == 16) {
+      content += "---|-----|-----|---\n";
+    } else {
+      content += "---|-----|---\n";
     }
     return content;
   }
