@@ -12,7 +12,7 @@ public class ComputerPlayer implements Player {
     if (mark == null) {
       chooseMark(board);
     }
-    return negamax(board, -10.0, 10.0, mark).getMove();
+    return negamax(board, 7, -10.0, 10.0, mark).getMove();
   }
 
   private void chooseMark(Board board) {
@@ -23,18 +23,18 @@ public class ComputerPlayer implements Player {
     }
   }
 
-  private MoveScore negamax(Board board, double alpha, double beta, String mark) {
+  private MoveScore negamax(Board board, int depth, double alpha, double beta, String mark) {
     double bestValue = -10.0;
     int bestMove = -1;
 
-    if (board.isOver()) {
+    if (board.isOver() || depth == 0) {
       double result = scoreFor(board, mark);
       return new MoveScore(result, bestMove);
     }
 
     for (Integer move : board.listOfMovesIndexOne()) {
       Board newBoard = board.newBoardWithMove(move, board.currentMark());
-      double value = -negamax(newBoard, -beta, -alpha, getOpponent(mark)).getScore();
+      double value = -negamax(newBoard, depth - 1,  -beta, -alpha, getOpponent(mark)).getScore();
       if (value > bestValue) {
         bestValue = value;
         bestMove = move;
