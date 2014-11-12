@@ -68,8 +68,8 @@ public class Board {
   }
 
   public boolean hasWinner() {
-    for (Line combo : getCombinations()) {
-      if(combo.hasWinner()) {
+    for (Line line : getAllLines()) {
+      if(line.hasWinner()) {
         return true;
       }
     }
@@ -96,7 +96,7 @@ public class Board {
     return gridPairs;
   }
 
-  private List<Line> getCombinations() {
+  private List<Line> getAllLines() {
     List<Line> combos = new ArrayList<>();
     combos.addAll(getRows());
     combos.addAll(getColumns());
