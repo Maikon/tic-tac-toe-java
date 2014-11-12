@@ -187,14 +187,25 @@ public class BoardTest {
   }
 
   @Test
-  public void currentMarkWhenBoardMovesIsOdd() {
+  public void currentMarkOnEmpty3x3() {
     assertThat(board3x3.currentMark(), is("X"));
   }
 
   @Test
-  public void currentMarkWhenBoardMovesIsEven() {
+  public void currentMarkOn3x3ThatHasMove() {
     Board boardWithMove = createBoard(3, asList(5));
 
+    assertThat(boardWithMove.currentMark(), is("O"));
+  }
+
+  @Test
+  public void currentMarkOnEmpty4x4() {
+    assertThat(board4x4.currentMark(), is("X"));
+  }
+
+  @Test
+  public void currentMarkOn4x4ThatHasMove() {
+    Board boardWithMove = createBoard(4, asList(10));
     assertThat(boardWithMove.currentMark(), is("O"));
   }
 

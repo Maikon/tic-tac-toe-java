@@ -15,7 +15,7 @@ public class ComputerPlayer implements Player {
     return negamax(board, -10.0, 10.0, mark).getMove();
   }
 
-  public void chooseMark(Board board) {
+  private void chooseMark(Board board) {
     if (availableMovesCountIsEven(board)) {
       mark = "O";
     } else {
@@ -74,7 +74,7 @@ public class ComputerPlayer implements Player {
   }
 
   private boolean availableMovesCountIsEven(Board board) {
-    return board.numberOfAvailableMoves() % 2 == 0;
+    return board.numberOfMovesMade() % 2 == 0;
   }
 
   private class MoveScore {

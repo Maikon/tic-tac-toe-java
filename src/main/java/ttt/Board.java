@@ -35,6 +35,10 @@ public class Board {
     return new Board(grid);
   }
 
+  public int numberOfMovesMade() {
+    return getGrid().size() - numberOfAvailableMoves() + 1;
+  }
+
   public String lastMoveMark() {
     return currentMark().equals("X") ? "O" : "X";
   }
@@ -117,7 +121,7 @@ public class Board {
   }
 
   private boolean totalAvailableMovesIsEven() {
-    return numberOfAvailableMoves() % 2 == 0;
+    return numberOfMovesMade() % 2 == 0;
   }
 
   private List<String> makeMove(int position, String mark) {
@@ -149,12 +153,14 @@ public class Board {
     List<Line> diagonals = new ArrayList<>();
     List<String> leftDiagonal = new ArrayList<>();
     List<String> rightDiagonal = new ArrayList<>();
+
     int counter = size - 1;
     for (int i = 0; i < size; i++) {
       leftDiagonal.add(getRows().get(i).getElementAt(i));
       rightDiagonal.add(getRows().get(i).getElementAt(counter));
       counter -= 1;
     }
+
     diagonals.add(new Line(leftDiagonal));
     diagonals.add(new Line(rightDiagonal));
     return diagonals;
