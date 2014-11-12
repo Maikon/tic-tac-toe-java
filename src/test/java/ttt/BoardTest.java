@@ -47,10 +47,10 @@ public class BoardTest {
     Board boardRowThree = createBoard(4, asList(9, 10, 11, 12));
     Board boardRowFour  = createBoard(4, asList(13, 14, 15, 16));
 
-    assertThat(boardRowOne.hasWinner(), is(true));
-    assertThat(boardRowTwo.hasWinner(), is(true));
+    assertThat(boardRowOne.hasWinner(),   is(true));
+    assertThat(boardRowTwo.hasWinner(),   is(true));
     assertThat(boardRowThree.hasWinner(), is(true));
-    assertThat(boardRowFour.hasWinner(), is(true));
+    assertThat(boardRowFour.hasWinner(),  is(true));
   }
 
   @Test
@@ -60,10 +60,10 @@ public class BoardTest {
     Board boardColThree = createBoard(4, asList(3, 7, 11, 15));
     Board boardColFour  = createBoard(4, asList(4, 8, 12, 16));
 
-    assertThat(boardColOne.hasWinner(), is(true));
-    assertThat(boardColTwo.hasWinner(), is(true));
+    assertThat(boardColOne.hasWinner(),   is(true));
+    assertThat(boardColTwo.hasWinner(),   is(true));
     assertThat(boardColThree.hasWinner(), is(true));
-    assertThat(boardColFour.hasWinner(), is(true));
+    assertThat(boardColFour.hasWinner(),  is(true));
   }
 
   @Test
@@ -119,9 +119,9 @@ public class BoardTest {
     Board boardSecondRowWin = createBoard(3, asList(4, 5, 6));
     Board boardThirdRowWin  = createBoard(3, asList(7, 8, 9));
 
-    assertThat(boardFirstRowWin.hasWinner(), is(true));
+    assertThat(boardFirstRowWin.hasWinner(),  is(true));
     assertThat(boardSecondRowWin.hasWinner(), is(true));
-    assertThat(boardThirdRowWin.hasWinner(), is(true));
+    assertThat(boardThirdRowWin.hasWinner(),  is(true));
   }
 
   @Test
@@ -130,9 +130,9 @@ public class BoardTest {
     Board boardSecondColWin = createBoard(3, asList(2, 5, 8));
     Board boardThirdColWin  = createBoard(3, asList(3, 6, 9));
 
-    assertThat(boardFirstColWin.hasWinner(), is(true));
+    assertThat(boardFirstColWin.hasWinner(),  is(true));
     assertThat(boardSecondColWin.hasWinner(), is(true));
-    assertThat(boardThirdColWin.hasWinner(), is(true));
+    assertThat(boardThirdColWin.hasWinner(),  is(true));
   }
 
   @Test
@@ -140,7 +140,7 @@ public class BoardTest {
     Board leftDiagonalWin = createBoard(3, asList(1, 5, 9));
     Board rightDiagonalWin = createBoard(3, asList(3, 5, 7));
 
-    assertThat(leftDiagonalWin.hasWinner(), is(true));
+    assertThat(leftDiagonalWin.hasWinner(),  is(true));
     assertThat(rightDiagonalWin.hasWinner(), is(true));
   }
 
@@ -177,13 +177,13 @@ public class BoardTest {
   @Test
   public void boardInEndState3x3() {
     assertThat(getBoardWithDraw3x3().isOver(), is(true));
-    assertThat(getWinningBoard3x3().isOver(), is(true));
+    assertThat(getWinningBoard3x3().isOver(),  is(true));
   }
 
   @Test
   public void boardInEndState4x4() {
     assertThat(getBoardWithDraw4x4().isOver(), is(true));
-    assertThat(getWinningBoard4x4().isOver(), is(true));
+    assertThat(getWinningBoard4x4().isOver(),  is(true));
   }
 
   @Test
@@ -238,8 +238,8 @@ public class BoardTest {
 
   private Board getWinningBoard3x3() {
     return new Board(asList("X", "X", "X",
-                            "", "", "",
-                            "",  "", ""));
+                            "" , "" , "" ,
+                            "" , "" , ""));
   }
 
   private Board getBoardWithDraw4x4() {
@@ -250,9 +250,9 @@ public class BoardTest {
   }
 
   private Board getWinningBoard4x4() {
-    return new Board(asList("X", "", "", "",
-                            "", "X", "", "",
-                            "", "", "X", "",
-                            "", "", "", "X"));
+    return new Board(asList("X", "" , "" , "",
+                            "" , "X", "" , "",
+                            "" , "" , "X", "",
+                            "" , "" , "" , "X"));
   }
 }

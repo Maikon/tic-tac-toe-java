@@ -31,7 +31,6 @@ public class CliDisplay implements Display {
     this.inputStream = new BufferedReader(new InputStreamReader(inputStream));
   }
 
-  @Override
   public void greetPlayers() {
     outputStream.println(WELCOMING_MESSAGE);
   }
@@ -48,7 +47,6 @@ public class CliDisplay implements Display {
     }
   }
 
-  @Override
   public void askForMove() {
     outputStream.println(MOVE_PROMPT);
   }
@@ -71,40 +69,21 @@ public class CliDisplay implements Display {
     outputStream.println(BOARD_CHOICE_MESSAGE);
   }
 
-  @Override
   public void showGameOptions() {
     outputStream.println(GAME_OPTIONS);
   }
 
   @Override
-  public String getGameChoice() {
-    String move;
-    try {
-      move = inputStream.readLine();
-      while (!validGameOptions().containsKey(move)) {
-        outputStream.println(INVALID_GAME_CHOICE);
-        move = inputStream.readLine();
-      }
-      return move;
-    } catch (IOException e) {
-      return "invalid";
-    }
+  public int getBoardChoice() {
+    greetPlayers();
+    askForBoardChoice();
+    return validBoardChoice();
   }
 
   @Override
-  public int getBoardChoice() {
-    String choice;
-    askForBoardChoice();
-    try {
-      choice = inputStream.readLine();
-      while(!validBoardChoices().containsKey(choice)) {
-        outputStream.println(INVALID_BOARD_CHOICE);
-        choice = inputStream.readLine();
-      }
-    } catch (IOException e) {
-      choice = "";
-    }
-    return validBoardChoices().get(choice);
+  public String getGameChoice() {
+    showGameOptions();
+    return validGameChoice();
   }
 
   @Override
@@ -124,14 +103,14 @@ public class CliDisplay implements Display {
   private String addSpacingWithLineBreaks(Board board, String content, int counter) {
     if(counter % board.getSize() == 0) {
       content += "\n";
-      content = addCustomLineBreaker(board, content, counter);
+      content = addCustomLineBreaker(board, content);
     } else {
       content += "  |  ";
     }
     return content;
   }
 
-  private String addCustomLineBreaker(Board board, String content, int counter) {
+  private String addCustomLineBreaker(Board board, String content) {
     if (board.getGrid().size() == 16) {
       content += "---|-----|-----|---\n";
     } else {
@@ -147,6 +126,34 @@ public class CliDisplay implements Display {
       content += entry.getValue();
     }
     return content;
+  }
+
+  private int validBoardChoice() {
+    String choice;
+    try {
+      choice = inputStream.readLine();
+      while(!validBoardChoices().containsKey(choice)) {
+        outputStream.println(INVALID_BOARD_CHOICE);
+        choice = inputStream.readLine();
+      }
+    } catch (IOException e) {
+      choice = "";
+    }
+    return validBoardChoices().get(choice);
+  }
+
+  private String validGameChoice() {
+    String move;
+    try {
+      move = inputStream.readLine();
+      while (!validGameOptions().containsKey(move)) {
+        outputStream.println(INVALID_GAME_CHOICE);
+        move = inputStream.readLine();
+      }
+      return move;
+    } catch (IOException e) {
+      return "invalid";
+    }
   }
 
   private Map<String, String> validGameOptions() {

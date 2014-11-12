@@ -10,6 +10,7 @@ import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class GameTest {
 
@@ -31,15 +32,18 @@ public class GameTest {
     game.nextPlayerMakesMove();
     game.nextPlayerMakesMove();
     game.nextPlayerMakesMove();
-    List<String> resultedBoard = asList("X", "O", "", "", "", "", "", "", "X");
-    List<String> boardGrid = game.getBoardGrid();
-    assertThat(boardGrid, equalTo(resultedBoard));
+    List<String> resultedBoard = asList("X", "O", "",
+                                        "" , "" , "",
+                                        "" , "" , "X");
+
+    assertThat(game.getBoardGrid(), equalTo(resultedBoard));
   }
 
   @Test
   public void raisesExceptionGivenInvalidMove() {
     display.setMoves(asList(10));
     game.nextPlayerMakesMove();
+
     assertThat(display.showedInvalidMoveMessage(), is(true));
   }
 
@@ -49,9 +53,11 @@ public class GameTest {
     display.setMoves(asList(10, 1));
     game.nextPlayerMakesMove();
     game.nextPlayerMakesMove();
-    List<String> resultedBoard = asList("X", "", "", "", "", "", "", "", "");
-    List<String> boardGrid = game.getBoardGrid();
-    assertThat(boardGrid, equalTo(resultedBoard));
+    List<String> resultedBoard = asList("X", "", "",
+                                        "" , "", "",
+                                        "" , "", "");
+
+    assertThat(game.getBoardGrid(), equalTo(resultedBoard));
   }
 
   @Test
@@ -61,29 +67,19 @@ public class GameTest {
 
   @Test
   public void whenGameIsOver() {
-    Board drawBoard = new Board(asList("X", "O", "X", "X", "O", "X", "O", "X", "O"));
+    Board drawBoard = new Board(asList("X", "O", "X",
+                                       "X", "O", "X",
+                                       "O", "X", "O"));
     Game game = new Game(drawBoard, display);
+
     assertThat(game.isOver(), is(true));
-  }
-
-  @Test
-  public void greetsThePlayerBeforeStarting(){
-    setMovesAndGameChoice();
-    game.start();
-    assertThat(display.greetedPlayer(), is(true));
-  }
-
-  @Test
-  public void showsTheGameOptions(){
-    setMovesAndGameChoice();
-    game.start();
-    assertThat(display.showedOptions(), is(true));
   }
 
   @Test
   public void showsTheBoard() {
     setMovesAndGameChoice();
     game.start();
+
     assertThat(display.showedBoard(), is(true));
   }
 
@@ -91,6 +87,7 @@ public class GameTest {
   public void showResults() {
     setMovesAndGameChoice();
     game.start();
+
     assertThat(display.showedResults(), is(true));
   }
 
@@ -98,6 +95,7 @@ public class GameTest {
   public void getValidGameChoiceFromDisplay() {
     display.setGameChoices(asList("1"));
     game.setTwoPlayers();
+
     assertThat(display.gotValidChoice(), is(true));
   }
 
@@ -107,7 +105,16 @@ public class GameTest {
     FakeDisplay display = createDisplay(winningMoves(), asList("1"));
     Game game = new Game(board, display);
     game.start();
+
     assertThat(game.isOver(), is(true));
+  }
+
+  @Test
+  public void getsBoardSizeFromDisplay() {
+    FakeDisplay display = createDisplay(winningMoves(), asList("1"));
+    new Game(display);
+
+    assertTrue(display.gotBoardChoice());
   }
 
   private FakeDisplay createDisplay(List<Integer> moves, List<String> choices) {

@@ -5,15 +5,9 @@ public interface Display {
 
   int getMove();
 
-  void greetPlayers();
-
-  void askForMove();
-
   void showInvalidMoveMessage();
 
   void showResults(Board board);
-
-  void showGameOptions();
 
   String getGameChoice();
 

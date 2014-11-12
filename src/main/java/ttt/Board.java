@@ -59,7 +59,7 @@ public class Board {
 
   public List<Integer> listOfMovesIndexOne() {
     List<Integer> moves = new LinkedList<>();
-    addAvailableMovesPlusOne(moves);
+    listOfMoves().stream().forEach(move -> moves.add(move + 1));
     return moves;
   }
 
@@ -102,14 +102,6 @@ public class Board {
     combos.addAll(getColumns());
     combos.addAll(getDiagonals());
     return combos;
-  }
-
-  private void addAvailableMovesPlusOne(List<Integer> moves) {
-    for(int i=0; i < getGrid().size(); i++) {
-      if(getGrid().get(i).equals("")) {
-        moves.add(i + 1);
-      }
-    }
   }
 
   private void addAvailableMoves(List<Integer> moves) {

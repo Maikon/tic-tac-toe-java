@@ -11,21 +11,24 @@ public class Game {
   private Board board;
   private List<Player> players;
 
-  public Game(Board board, Display display) {
+  Game(Board board, Display display) {
     this.board = board;
     this.display = display;
     factory = new PlayerFactory(display);
   }
 
+  public Game(Display display) {
+    this.display = display;
+    this.board = new Board(display.getBoardChoice());
+    factory = new PlayerFactory(display);
+  }
+
   public void start() {
-    display.greetPlayers();
-    display.showGameOptions();
     setTwoPlayers();
     while (!isOver()) {
-      display.show(getBoard());
-      nextPlayerMakesMove();
+      playGame();
     }
-    display.showResults(getBoard());
+    showResults();
   }
 
   public void setTwoPlayers() {
@@ -45,12 +48,22 @@ public class Game {
     return players;
   }
 
-  public List<String> getBoardGrid() {
+  public boolean isOver() {
+    return getBoard().isOver();
+  }
+
+  List<String> getBoardGrid() {
     return getBoard().getGrid();
   }
 
-  public boolean isOver() {
-    return getBoard().isOver();
+  private void playGame() {
+    display.show(getBoard());
+    nextPlayerMakesMove();
+  }
+
+  private void showResults() {
+    display.show(getBoard());
+    display.showResults(getBoard());
   }
 
   private void currentPlayerMakesMove() {

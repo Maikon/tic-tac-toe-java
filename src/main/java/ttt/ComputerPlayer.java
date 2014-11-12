@@ -69,10 +69,6 @@ public class ComputerPlayer implements Player {
     return -score;
   }
 
-  public String getMark() {
-    return mark;
-  }
-
   private boolean availableMovesCountIsEven(Board board) {
     return board.numberOfMovesMade() % 2 == 0;
   }

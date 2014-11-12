@@ -12,11 +12,10 @@ public class FakeDisplay implements Display {
   private LinkedList<Integer> listOfMoves;
   private LinkedList<String> gameChoices;
   private boolean called = false;
-  private boolean greeted = false;
   private boolean showed = false;
   private boolean showedResults = false;
   private boolean gotChoice = false;
-  private boolean showedOption = false;
+  private boolean gotBoardSize = false;
 
   public FakeDisplay(List<Integer> moves) {
     this(moves, asList(""));
@@ -35,15 +34,6 @@ public class FakeDisplay implements Display {
   @Override
   public int getMove() {
     return listOfMoves.pop();
-  }
-
-  @Override
-  public void greetPlayers() {
-    this.greeted = true;
-  }
-
-  @Override
-  public void askForMove() {
   }
 
   public void setMoves(List<Integer> moves) {
@@ -65,11 +55,6 @@ public class FakeDisplay implements Display {
   }
 
   @Override
-  public void showGameOptions() {
-    this.showedOption = true;
-  }
-
-  @Override
   public String getGameChoice() {
     this.gotChoice = true;
     return gameChoices.pop();
@@ -77,11 +62,8 @@ public class FakeDisplay implements Display {
 
   @Override
   public int getBoardChoice() {
-    return 0;
-  }
-
-  public boolean greetedPlayer() {
-    return greeted;
+    this.gotBoardSize = true;
+    return 3;
   }
 
   public boolean showedBoard() {
@@ -100,7 +82,7 @@ public class FakeDisplay implements Display {
     return gotChoice;
   }
 
-  public boolean showedOptions() {
-    return showedOption;
+  public boolean gotBoardChoice() {
+    return gotBoardSize;
   }
 }
