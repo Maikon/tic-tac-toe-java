@@ -6,26 +6,14 @@ public class ComputerPlayer implements Player {
   public static final int END_DEPTH = 0;
   public static final int SCORE_FOR_DRAW = 0;
   public static final int DEFAULT_BEST_MOVE = -1;
-  public String mark;
 
   @Override
   public Board makeMove(Board board) {
-    return board.newBoardWithMove(bestMove(board), mark);
+    return board.newBoardWithMove(bestMove(board), board.currentMark());
   }
 
   public int bestMove(Board board) {
-    if (mark == null) {
-      chooseMark(board);
-    }
-    return negamax(board, STARTING_DEPTH, -INITIAL_VALUE, INITIAL_VALUE, mark).getMove();
-  }
-
-  private void chooseMark(Board board) {
-    if (availableMovesCountIsEven(board)) {
-      mark = "O";
-    } else {
-      mark = "X";
-    }
+    return negamax(board, STARTING_DEPTH, -INITIAL_VALUE, INITIAL_VALUE, board.currentMark()).getMove();
   }
 
   private MoveScore negamax(Board board, int depth, double alpha, double beta, String mark) {
@@ -72,10 +60,6 @@ public class ComputerPlayer implements Player {
     }
 
     return -score;
-  }
-
-  private boolean availableMovesCountIsEven(Board board) {
-    return board.numberOfMovesMade() % 2 == 0;
   }
 
   private class MoveScore {
