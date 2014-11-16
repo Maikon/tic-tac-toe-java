@@ -25,7 +25,7 @@ public class ComputerPlayer implements Player {
       return new MoveScore(result, bestMove);
     }
 
-    for (Integer move : board.listOfMovesIndexOne()) {
+    for (Integer move : board.availableMoves()) {
       Board newBoard = board.newBoardWithMove(move, board.currentMark());
       double value = -negamax(newBoard, depth - 1,  -beta, -alpha, getOpponent(mark)).getScore();
       if (value > bestValue) {

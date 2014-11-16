@@ -41,7 +41,7 @@ public class CliDisplay implements Display {
     String move;
     try {
       move = inputStream.readLine();
-      return Integer.parseInt(move);
+      return Integer.parseInt(move) - 1;
     } catch (IOException | NumberFormatException e) {
       return INVALID_MOVE;
     }

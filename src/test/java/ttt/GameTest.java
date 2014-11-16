@@ -19,7 +19,7 @@ public class GameTest {
 
   @Before
   public void setup() {
-    List<Integer> moves = asList(1, 2, 9);
+    List<Integer> moves = asList(0, 1, 8);
     List<String> choices = asList("1");
     display = new FakeDisplay(moves, choices);
     Board board = new Board();
@@ -50,7 +50,7 @@ public class GameTest {
 
   @Test
   public void samePlayerGoesAgainIfMoveInvalid() {
-    display.setMoves(asList(10, 1));
+    display.setMoves(asList(10, 0));
     game.nextPlayerMakesMove();
     game.nextPlayerMakesMove();
     List<String> resultedBoard = asList("X", "", "",
@@ -127,7 +127,7 @@ public class GameTest {
   }
 
   private List<Integer> winningMoves() {
-    return asList(1, 6, 2, 5, 3);
+    return asList(0, 5, 1, 4, 2);
   }
 }
 

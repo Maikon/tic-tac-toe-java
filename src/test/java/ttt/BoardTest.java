@@ -7,7 +7,6 @@ import ttt.Exceptions.InvalidMoveException;
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -42,10 +41,10 @@ public class BoardTest {
 
   @Test
   public void checksForWinnerInRowsOn4x4() {
-    Board boardRowOne   = createBoard(4, asList(1, 2, 3, 4));
-    Board boardRowTwo   = createBoard(4, asList(5, 6, 7, 8));
-    Board boardRowThree = createBoard(4, asList(9, 10, 11, 12));
-    Board boardRowFour  = createBoard(4, asList(13, 14, 15, 16));
+    Board boardRowOne   = createBoard(4, asList(0, 1, 2, 3));
+    Board boardRowTwo   = createBoard(4, asList(4, 5, 6, 7));
+    Board boardRowThree = createBoard(4, asList(8, 9, 10, 11));
+    Board boardRowFour  = createBoard(4, asList(12, 13, 14, 15));
 
     assertThat(boardRowOne.hasWinner(),   is(true));
     assertThat(boardRowTwo.hasWinner(),   is(true));
@@ -55,10 +54,10 @@ public class BoardTest {
 
   @Test
   public void checksForWinnerInColumnsOn4x4() {
-    Board boardColOne   = createBoard(4, asList(1, 5, 9, 13));
-    Board boardColTwo   = createBoard(4, asList(2, 6, 10, 14));
-    Board boardColThree = createBoard(4, asList(3, 7, 11, 15));
-    Board boardColFour  = createBoard(4, asList(4, 8, 12, 16));
+    Board boardColOne   = createBoard(4, asList(0, 4, 8, 12));
+    Board boardColTwo   = createBoard(4, asList(1, 5, 9, 13));
+    Board boardColThree = createBoard(4, asList(2, 6, 10, 14));
+    Board boardColFour  = createBoard(4, asList(3, 7, 11, 15));
 
     assertThat(boardColOne.hasWinner(),   is(true));
     assertThat(boardColTwo.hasWinner(),   is(true));
@@ -68,8 +67,8 @@ public class BoardTest {
 
   @Test
   public void checksForWinnerInDiagonalsOn4x4() {
-    Board boardDiagonalOne = createBoard(4, asList(1, 6, 11, 16));
-    Board boardDiagonalTwo = createBoard(4, asList(4, 7, 10, 13));
+    Board boardDiagonalOne = createBoard(4, asList(0, 5, 10, 15));
+    Board boardDiagonalTwo = createBoard(4, asList(3, 6, 9, 12));
 
     assertThat(boardDiagonalOne.hasWinner(), is(true));
     assertThat(boardDiagonalTwo.hasWinner(), is(true));
@@ -77,14 +76,14 @@ public class BoardTest {
 
   @Test
   public void newBoardWithMovesMade3x3() {
-    Board boardWithMove3x3 = createBoard(3, asList(7));
+    Board boardWithMove3x3 = createBoard(3, asList(6));
 
     assertThat(boardWithMove3x3.numberOfAvailableMoves(), is(8));
   }
 
   @Test
   public void newBoardWithMovesMade4x4() {
-    Board boardWithMove4x4 = createBoard(4, asList(10, 5));
+    Board boardWithMove4x4 = createBoard(4, asList(9, 4));
 
     assertThat(boardWithMove4x4.numberOfAvailableMoves(), is(14));
   }
@@ -93,14 +92,14 @@ public class BoardTest {
   public void listOfAvailableMoves3x3() {
     Board boardWithOneMove = createBoard(3, asList(4));
 
-    assertThat(boardWithOneMove.listOfMoves().size(), is(8));
+    assertThat(boardWithOneMove.availableMoves().size(), is(8));
   }
 
   @Test
   public void listOfAvailableMoves4x4() {
     Board boardWithOneMove = createBoard(4, asList(10));
 
-    assertThat(boardWithOneMove.listOfMoves().size(), is(15));
+    assertThat(boardWithOneMove.availableMoves().size(), is(15));
   }
 
   @Test
@@ -115,9 +114,9 @@ public class BoardTest {
 
   @Test
   public void checksForWinnerInRowsOn3x3() {
-    Board boardFirstRowWin  = createBoard(3, asList(1, 2, 3));
-    Board boardSecondRowWin = createBoard(3, asList(4, 5, 6));
-    Board boardThirdRowWin  = createBoard(3, asList(7, 8, 9));
+    Board boardFirstRowWin  = createBoard(3, asList(0, 1, 2));
+    Board boardSecondRowWin = createBoard(3, asList(3, 4, 5));
+    Board boardThirdRowWin  = createBoard(3, asList(6, 7, 8));
 
     assertThat(boardFirstRowWin.hasWinner(),  is(true));
     assertThat(boardSecondRowWin.hasWinner(), is(true));
@@ -126,9 +125,9 @@ public class BoardTest {
 
   @Test
   public void checksForWinnerInColumnsOn3x3() {
-    Board boardFirstColWin  = createBoard(3, asList(1, 4, 7));
-    Board boardSecondColWin = createBoard(3, asList(2, 5, 8));
-    Board boardThirdColWin  = createBoard(3, asList(3, 6, 9));
+    Board boardFirstColWin  = createBoard(3, asList(0, 3, 6));
+    Board boardSecondColWin = createBoard(3, asList(1, 4, 7));
+    Board boardThirdColWin  = createBoard(3, asList(2, 5, 8));
 
     assertThat(boardFirstColWin.hasWinner(),  is(true));
     assertThat(boardSecondColWin.hasWinner(), is(true));
@@ -137,8 +136,8 @@ public class BoardTest {
 
   @Test
   public void checksForWinnerInDiagonalsOn3x3() {
-    Board leftDiagonalWin = createBoard(3, asList(1, 5, 9));
-    Board rightDiagonalWin = createBoard(3, asList(3, 5, 7));
+    Board leftDiagonalWin = createBoard(3, asList(0, 4, 8));
+    Board rightDiagonalWin = createBoard(3, asList(2, 4, 6));
 
     assertThat(leftDiagonalWin.hasWinner(),  is(true));
     assertThat(rightDiagonalWin.hasWinner(), is(true));

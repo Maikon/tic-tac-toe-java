@@ -31,7 +31,7 @@ public class Board {
   }
 
   public Board newBoardWithMove(int position, String mark) {
-    List<String> grid = makeMove(position - 1, mark);
+    List<String> grid = makeMove(position, mark);
     return new Board(grid);
   }
 
@@ -48,18 +48,16 @@ public class Board {
   }
 
   public int numberOfAvailableMoves() {
-    return listOfMoves().size();
+    return availableMoves().size();
   }
 
-  public List<Integer> listOfMoves() {
+  public List<Integer> availableMoves() {
     List<Integer> moves = new LinkedList<>();
-    addAvailableMoves(moves);
-    return moves;
-  }
-
-  public List<Integer> listOfMovesIndexOne() {
-    List<Integer> moves = new LinkedList<>();
-    listOfMoves().stream().forEach(move -> moves.add(move + 1));
+    for(int i=0; i < getGrid().size(); i++) {
+      if(getGrid().get(i).equals("")) {
+        moves.add(i);
+      }
+    }
     return moves;
   }
 
@@ -77,7 +75,7 @@ public class Board {
   }
 
   public boolean hasDraw() {
-    return !hasWinner() && listOfMoves().isEmpty();
+    return !hasWinner() && availableMoves().isEmpty();
   }
 
   public List<Line> getRows() {
@@ -104,14 +102,6 @@ public class Board {
     return combos;
   }
 
-  private void addAvailableMoves(List<Integer> moves) {
-    for(int i=0; i < getGrid().size(); i++) {
-      if(getGrid().get(i).equals("")) {
-        moves.add(i);
-      }
-    }
-  }
-
   private boolean totalAvailableMovesIsEven() {
     return numberOfMovesMade() % 2 == 0;
   }
@@ -126,7 +116,7 @@ public class Board {
   }
 
   private boolean invalidMove(int position) {
-    return !listOfMoves().contains(position);
+    return !availableMoves().contains(position);
   }
 
   private List<Line> getColumns() {

@@ -10,6 +10,7 @@ import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertFalse;
 
 public class CliDisplayTest {
 
@@ -64,10 +65,17 @@ public class CliDisplayTest {
   }
 
   @Test
-  public void returnsTheInputFromUser() {
+  public void doesNotReturnUserInputInTheIndexGiven() {
     InputStream inputStream = new ByteArrayInputStream("9\n".getBytes());
     CliDisplay display = new CliDisplay(printStream, inputStream);
-    assertThat(display.getMove(), is(9));
+    assertFalse(display.getMove() == 9);
+  }
+
+  @Test
+  public void returnsTheMoveFromUserInCorrectIndex() {
+    InputStream inputStream = new ByteArrayInputStream("9\n".getBytes());
+    CliDisplay display = new CliDisplay(printStream, inputStream);
+    assertThat(display.getMove(), is(8));
   }
 
   @Test

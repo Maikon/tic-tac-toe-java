@@ -11,7 +11,7 @@ public class HumanPlayerTest {
 
   @Test
   public void makesMoveOnTheBoard() {
-    FakeDisplay display = new FakeDisplay(asList(1));
+    FakeDisplay display = new FakeDisplay(asList(0));
     HumanPlayer player = new HumanPlayer(display);
     Board board = new Board();
     Board newBoard = player.makeMove(board);

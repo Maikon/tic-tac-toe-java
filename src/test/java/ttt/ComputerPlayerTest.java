@@ -26,7 +26,7 @@ public class ComputerPlayerTest {
                                    "" , "X", "X",
                                    "O", "" , "O"));
     ComputerPlayer computer = new ComputerPlayer();
-    assertThat(computer.bestMove(board), is(4));
+    assertThat(computer.bestMove(board), is(3));
   }
 
   @Test
@@ -35,7 +35,7 @@ public class ComputerPlayerTest {
                                    "" , "X", "" ,
                                    "O", "" , "O"));
     ComputerPlayer computer = new ComputerPlayer();
-    assertThat(computer.bestMove(board), is(8));
+    assertThat(computer.bestMove(board), is(7));
   }
 
   @Test
@@ -44,7 +44,7 @@ public class ComputerPlayerTest {
                                    "O", "X", "",
                                    "" , "" , ""));
     ComputerPlayer computer = new ComputerPlayer();
-    assertThat(computer.bestMove(board), is(9));
+    assertThat(computer.bestMove(board), is(8));
   }
 
   @Test
@@ -53,7 +53,7 @@ public class ComputerPlayerTest {
                                    "O", "" , "" ,
                                    "" , "" , ""));
     ComputerPlayer computer = new ComputerPlayer();
-    assertThat(computer.bestMove(board), is(2));
+    assertThat(computer.bestMove(board), is(1));
   }
 
   @Test
@@ -62,7 +62,7 @@ public class ComputerPlayerTest {
                                    "" , "O", "" ,
                                    "O", "X", "X"));
     ComputerPlayer computer = new ComputerPlayer();
-    assertThat(computer.bestMove(board), is(6));
+    assertThat(computer.bestMove(board), is(5));
   }
 
   @Test
@@ -71,7 +71,7 @@ public class ComputerPlayerTest {
                                    "O", "X", "" ,
                                    "" , "" , ""));
     ComputerPlayer computer = new ComputerPlayer();
-    assertThat(computer.bestMove(board), is(7));
+    assertThat(computer.bestMove(board), is(6));
   }
 
   @Test
@@ -80,7 +80,7 @@ public class ComputerPlayerTest {
                                    "" , "O", "" ,
                                    "X", "" , ""));
     ComputerPlayer computer = new ComputerPlayer();
-    List goodMoves = asList(2, 8);
+    List goodMoves = asList(1, 7);
     assertThat(computer.bestMove(board), isIn(goodMoves));
   }
 
@@ -90,7 +90,7 @@ public class ComputerPlayerTest {
                                    "" , "O", "",
                                    "" , "" , "X"));
     ComputerPlayer computer = new ComputerPlayer();
-    List goodMoves = asList(2, 8);
+    List goodMoves = asList(1, 7);
     assertThat(computer.bestMove(board), isIn(goodMoves));
   }
 
@@ -100,7 +100,7 @@ public class ComputerPlayerTest {
                                    "" , "X", "",
                                    "" , "" , "X"));
     ComputerPlayer computer = new ComputerPlayer();
-    List goodMoves = asList(3, 7);
+    List goodMoves = asList(2, 6);
     assertThat(computer.bestMove(board), isIn(goodMoves));
   }
 
@@ -110,7 +110,7 @@ public class ComputerPlayerTest {
                                    "" , "X", "",
                                    "X", "" , ""));
     ComputerPlayer computer = new ComputerPlayer();
-    List goodMoves = asList(1, 9);
+    List goodMoves = asList(0, 8);
     assertThat(computer.bestMove(board), isIn(goodMoves));
   }
 
@@ -120,7 +120,7 @@ public class ComputerPlayerTest {
                                    "", "O", "X",
                                    "", "X", ""));
     ComputerPlayer computer = new ComputerPlayer();
-    List goodMoves = asList(3, 7, 9);
+    List goodMoves = asList(2, 6, 8);
     assertThat(computer.bestMove(board), isIn(goodMoves));
   }
 
@@ -130,7 +130,7 @@ public class ComputerPlayerTest {
                                    "X", "O", "",
                                    "" , "" , ""));
     ComputerPlayer computer = new ComputerPlayer();
-    List goodMoves = asList(1, 3, 7);
+    List goodMoves = asList(0, 2, 6);
     assertThat(computer.bestMove(board), isIn(goodMoves));
   }
 
@@ -140,7 +140,7 @@ public class ComputerPlayerTest {
                                    "" , "", "",
                                    "" , "", ""));
     ComputerPlayer computer = new ComputerPlayer();
-    assertThat(computer.bestMove(board), is(5));
+    assertThat(computer.bestMove(board), is(4));
   }
 
   @Test
@@ -150,7 +150,7 @@ public class ComputerPlayerTest {
                                    "O", "" , "" , "" ,
                                    "O", "" , "" , ""));
     ComputerPlayer computer = new ComputerPlayer();
-    assertThat(computer.bestMove(board), is(1));
+    assertThat(computer.bestMove(board), is(0));
   }
 
   @Test
@@ -160,7 +160,7 @@ public class ComputerPlayerTest {
                                    "O", "X" , "", "" ,
                                    "O", "" , "" , ""));
     ComputerPlayer computer = new ComputerPlayer();
-    assertThat(computer.bestMove(board), is(14));
+    assertThat(computer.bestMove(board), is(13));
   }
 
   @Test
@@ -170,7 +170,7 @@ public class ComputerPlayerTest {
                                    "O", "" , "X", "" ,
                                    "O", "" , "" , ""));
     ComputerPlayer computer = new ComputerPlayer();
-    assertThat(computer.bestMove(board), is(16));
+    assertThat(computer.bestMove(board), is(15));
   }
 
   @Test
@@ -180,7 +180,7 @@ public class ComputerPlayerTest {
                                    "O", "X", "X", "" ,
                                    "O", "" , "" , ""));
     ComputerPlayer computer = new ComputerPlayer();
-    assertThat(computer.bestMove(board), is(16));
+    assertThat(computer.bestMove(board), is(15));
   }
 
   @Test
@@ -190,7 +190,7 @@ public class ComputerPlayerTest {
                                    "",   "",  "",  "O",
                                    "X",  "",  "",  "X"));
     ComputerPlayer computer = new ComputerPlayer();
-    List goodMoves = asList(10, 14, 15);
+    List goodMoves = asList(9, 13, 14);
     assertThat(computer.bestMove(board), isIn(goodMoves));
   }
 }
