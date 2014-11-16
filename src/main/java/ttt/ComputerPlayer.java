@@ -1,6 +1,11 @@
 package ttt;
 
 public class ComputerPlayer implements Player {
+  public static final double INITIAL_VALUE = 10.0;
+  public static final int STARTING_DEPTH = 7;
+  public static final int END_DEPTH = 0;
+  public static final int SCORE_FOR_DRAW = 0;
+  public static final int DEFAULT_BEST_MOVE = -1;
   public String mark;
 
   @Override
@@ -12,7 +17,7 @@ public class ComputerPlayer implements Player {
     if (mark == null) {
       chooseMark(board);
     }
-    return negamax(board, 7, -10.0, 10.0, mark).getMove();
+    return negamax(board, STARTING_DEPTH, -INITIAL_VALUE, INITIAL_VALUE, mark).getMove();
   }
 
   private void chooseMark(Board board) {
@@ -24,10 +29,10 @@ public class ComputerPlayer implements Player {
   }
 
   private MoveScore negamax(Board board, int depth, double alpha, double beta, String mark) {
-    double bestValue = -10.0;
-    int bestMove = -1;
+    double bestValue = -INITIAL_VALUE;
+    int bestMove = DEFAULT_BEST_MOVE;
 
-    if (board.isOver() || depth == 0) {
+    if (board.isOver() || depth == END_DEPTH) {
       double result = scoreFor(board, mark);
       return new MoveScore(result, bestMove);
     }
@@ -58,10 +63,10 @@ public class ComputerPlayer implements Player {
   }
 
   private double scoreFor(Board board, String mark) {
-    double score = 10.0 / (board.getGrid().size() - board.numberOfAvailableMoves());
+    double score = INITIAL_VALUE / (board.getSizeOfGrid() - board.numberOfAvailableMoves());
 
     if (board.hasDraw()) {
-      return 0;
+      return SCORE_FOR_DRAW;
     } else if (board.lastMoveMark().equals(mark)) {
       return score;
     }
