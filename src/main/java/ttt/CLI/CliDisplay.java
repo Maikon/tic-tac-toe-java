@@ -14,15 +14,15 @@ public class CliDisplay implements Display {
   private final BufferedReader inputStream;
   final int INVALID_MOVE = -1;
   final String DIVIDER = "*******************************";
-  final String BOARD_CHOICE_MESSAGE = "Please choose 1 or 2 for board size: 1. 3x3 2. 4x4";
-  final String INVALID_BOARD_CHOICE = "Please choose 1 for 3x3 or 2 for 4x4:";
+  final String BOARD_CHOICE_MESSAGE = "Please choose 1 for 3x3 or 2 for 4x4:";
+  final String INVALID_BOARD_CHOICE = "Please choose 1 or 2:";
   final String WELCOMING_MESSAGE = "Welcome to TicTacToe!";
   final String MOVE_PROMPT = "Please choose a move from the available ones:";
   final String INVALID_MOVE_MESSAGE = "--- Invalid Move ---";
   final String INVALID_GAME_CHOICE = "Please choose a valid game type: ";
   final String DRAW_MESSAGE = "The game is a draw!";
   final String GAME_OPTIONS = "Please choose a game type from 1-4\n" +
-                              " " + getGameChoiceLabelFor(PlayerFactory.HVH) +
+                              getGameChoiceLabelFor(PlayerFactory.HVH) +
                               " " + getGameChoiceLabelFor(PlayerFactory.HVC) +
                               " " + getGameChoiceLabelFor(PlayerFactory.CVH) +
                               " " + getGameChoiceLabelFor(PlayerFactory.CVC);
