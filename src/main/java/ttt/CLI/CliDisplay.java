@@ -2,6 +2,7 @@ package ttt.CLI;
 
 import ttt.Board;
 import ttt.Display;
+import ttt.PlayerFactory;
 
 import java.io.*;
 import java.util.HashMap;
@@ -21,10 +22,10 @@ public class CliDisplay implements Display {
   final String INVALID_GAME_CHOICE = "Please choose a valid game type: ";
   final String DRAW_MESSAGE = "The game is a draw!";
   final String GAME_OPTIONS = "Please choose a game type from 1-4\n" +
-                              " " + validGameOptions().get("1") +
-                              " " + validGameOptions().get("2") +
-                              " " + validGameOptions().get("3") +
-                              " " + validGameOptions().get("4");
+                              " " + getGameChoiceLabelFor(PlayerFactory.HVH) +
+                              " " + getGameChoiceLabelFor(PlayerFactory.HVC) +
+                              " " + getGameChoiceLabelFor(PlayerFactory.CVH) +
+                              " " + getGameChoiceLabelFor(PlayerFactory.CVC);
 
   public CliDisplay(PrintStream outputStream, InputStream inputStream) {
     this.outputStream = outputStream;
@@ -146,7 +147,7 @@ public class CliDisplay implements Display {
     String move;
     try {
       move = inputStream.readLine();
-      while (!validGameOptions().containsKey(move)) {
+      while (!getAllGameChoices().containsKey(move)) {
         outputStream.println(INVALID_GAME_CHOICE);
         move = inputStream.readLine();
       }
@@ -156,19 +157,18 @@ public class CliDisplay implements Display {
     }
   }
 
-  private Map<String, String> validGameOptions() {
-    Map<String, String> combinations = new HashMap<>();
-    combinations.put("1", "1. Human Vs Human");
-    combinations.put("2", "2. Human Vs Computer");
-    combinations.put("3", "3. Computer Vs Human");
-    combinations.put("4", "4. Computer Vs Computer");
-    return combinations;
-  }
-
   private Map<String, Integer> validBoardChoices() {
     Map<String, Integer> options = new HashMap<>();
     options.put("1", 3);
     options.put("2", 4);
     return options;
+  }
+
+  private String getGameChoiceLabelFor(String choice) {
+    return  getAllGameChoices().get(choice);
+  }
+
+  private Map<String, String> getAllGameChoices() {
+    return PlayerFactory.allGameChoices();
   }
 }

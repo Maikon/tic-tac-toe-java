@@ -19,10 +19,10 @@ public class PlayerFactory {
 
   public PlayerFactory(Display display) {
     this.display = display;
-    combos = new HashMap<>();
+    this.combos = new HashMap<>();
   }
 
-  public static Map allGameChoices() {
+  public static Map<String, String> allGameChoices() {
     Map<String, String> choices = new HashMap<>();
     choices.put(HVH, HUMAN_VS_HUMAN);
     choices.put(HVC, HUMAN_VS_COMPUTER);
