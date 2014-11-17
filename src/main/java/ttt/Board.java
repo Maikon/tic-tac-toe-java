@@ -5,6 +5,10 @@ import ttt.Exceptions.InvalidMoveException;
 import java.util.*;
 
 public class Board {
+  public static final int THREE_BY_THREE = 3;
+  public static final int FOUR_BY_FOUR = 4;
+  private static final String OPTION_ONE = "1";
+  private static final String OPTION_TWO = "2";
   private int size;
   private List<String> grid;
 
@@ -20,6 +24,13 @@ public class Board {
   public Board(List<String> grid) {
     this.grid = grid;
     this.size = (int) Math.sqrt(grid.size());
+  }
+
+  public static Map<String, Integer> getDimensions() {
+    Map<String, Integer> choices = new HashMap<>();
+    choices.put(OPTION_ONE, THREE_BY_THREE);
+    choices.put(OPTION_TWO, FOUR_BY_FOUR);
+    return choices;
   }
 
   public String getValueInPosition(int position) {

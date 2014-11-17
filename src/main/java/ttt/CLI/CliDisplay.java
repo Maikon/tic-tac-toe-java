@@ -133,14 +133,14 @@ public class CliDisplay implements Display {
     String choice;
     try {
       choice = inputStream.readLine();
-      while(!validBoardChoices().containsKey(choice)) {
+      while(!Board.getDimensions().containsKey(choice)) {
         outputStream.println(INVALID_BOARD_CHOICE);
         choice = inputStream.readLine();
       }
     } catch (IOException e) {
       choice = "";
     }
-    return validBoardChoices().get(choice);
+    return Board.getDimensions().get(choice);
   }
 
   private String validGameChoice() {
@@ -155,13 +155,6 @@ public class CliDisplay implements Display {
     } catch (IOException e) {
       return "invalid";
     }
-  }
-
-  private Map<String, Integer> validBoardChoices() {
-    Map<String, Integer> options = new HashMap<>();
-    options.put("1", 3);
-    options.put("2", 4);
-    return options;
   }
 
   private String getGameChoiceLabelFor(String choice) {

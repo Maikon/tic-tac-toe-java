@@ -9,6 +9,7 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.isIn;
 
 public class BoardTest {
 
@@ -218,6 +219,12 @@ public class BoardTest {
   public void raisesAnExceptionForAnInvalidMove() {
     Board boardWithMove = createBoard(3, asList(1));
     boardWithMove.newBoardWithMove(1, "O");
+  }
+
+  @Test
+  public void returnsValidBoardChoices() {
+    assertThat(Board.THREE_BY_THREE, isIn(Board.getDimensions().values()));
+    assertThat(Board.FOUR_BY_FOUR, isIn(Board.getDimensions().values()));
   }
 
   private Board createBoard(int size, List<Integer> moves) {
