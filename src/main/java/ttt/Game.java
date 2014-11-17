@@ -11,16 +11,16 @@ public class Game {
   private Board board;
   private List<Player> players;
 
-  Game(Board board, Display display) {
+  public Game(Board board, Display display) {
     this.board = board;
     this.display = display;
-    factory = new PlayerFactory(display);
+    this.factory = new PlayerFactory(display);
   }
 
   public Game(Display display) {
     this.display = display;
     this.board = new Board(display.getBoardChoice());
-    factory = new PlayerFactory(display);
+    this.factory = new PlayerFactory(display);
   }
 
   public void start() {
@@ -52,8 +52,12 @@ public class Game {
     return getBoard().isOver();
   }
 
-  List<String> getBoardGrid() {
-    return getBoard().getGrid();
+  public String valueInPosition(int position) {
+    return getBoard().getValueInPosition(position);
+  }
+
+  public String markThatGoesNext() {
+    return getBoard().currentMark();
   }
 
   private void playGame() {

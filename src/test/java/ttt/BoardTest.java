@@ -33,10 +33,9 @@ public class BoardTest {
 
   @Test
   public void makeMoveOn4x4() {
-    Board boardWithMove = createBoard(4, asList(15));
-    Board newBoard = board4x4.newBoardWithMove(15, "X");
+    Board newBoard = board4x4.newBoardWithMove(14, "X");
 
-    assertThat(newBoard.getGrid(), equalTo(boardWithMove.getGrid()));
+    assertThat(newBoard.getValueInPosition(14), is("X"));
   }
 
   @Test

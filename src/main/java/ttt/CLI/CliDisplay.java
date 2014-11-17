@@ -111,7 +111,7 @@ public class CliDisplay implements Display {
   }
 
   private String addCustomLineBreaker(Board board, String content) {
-    if (board.getGrid().size() == 16) {
+    if (board.getSizeOfGrid() == 16) {
       content += "---|-----|-----|---\n";
     } else {
       content += "---|-----|---\n";

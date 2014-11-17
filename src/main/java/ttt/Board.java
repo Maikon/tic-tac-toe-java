@@ -22,8 +22,12 @@ public class Board {
     this.size = (int) Math.sqrt(grid.size());
   }
 
-  public List<String> getGrid() {
-    return grid;
+  public String getValueInPosition(int position) {
+    return grid.get(position);
+  }
+
+  public int getSizeOfGrid() {
+    return grid.size();
   }
 
   public int getSize() {
@@ -53,8 +57,8 @@ public class Board {
 
   public List<Integer> availableMoves() {
     List<Integer> moves = new LinkedList<>();
-    for(int i=0; i < getGrid().size(); i++) {
-      if(getGrid().get(i).equals("")) {
+    for(int i=0; i < getSizeOfGrid(); i++) {
+      if(freePosition(i)) {
         moves.add(i);
       }
     }
@@ -92,6 +96,23 @@ public class Board {
       gridPairs.put(i + 1, getGrid().get(i));
     }
     return gridPairs;
+  }
+
+  private List<String> getGrid() {
+    return grid;
+  }
+
+  private Line getLineRange(int startIndex, int count) {
+    List<String> positions = new ArrayList<>();
+    int endIndex = startIndex + count;
+    for (int position = startIndex; position <= endIndex; position++) {
+      positions.add(getGrid().get(position));
+    }
+    return new Line(positions);
+  }
+
+  private boolean freePosition(int i) {
+    return getGrid().get(i).equals("");
   }
 
   private List<Line> getAllLines() {
@@ -146,14 +167,5 @@ public class Board {
     diagonals.add(new Line(leftDiagonal));
     diagonals.add(new Line(rightDiagonal));
     return diagonals;
-  }
-
-  private Line getLineRange(int startIndex, int count) {
-    List<String> positions = new ArrayList<>();
-    int endIndex = startIndex + count;
-    for (int position = startIndex; position <= endIndex; position++) {
-      positions.add(getGrid().get(position));
-    }
-    return new Line(positions);
   }
 }

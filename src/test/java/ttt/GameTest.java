@@ -7,23 +7,23 @@ import ttt.Fakes.FakeDisplay;
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class GameTest {
 
+  private static final int INVALID_MOVE = 10;
+  private static final String HUMAN_VS_HUMAN = "1";
   private Game game;
   private FakeDisplay display;
 
   @Before
   public void setup() {
-    List<Integer> moves = asList(0, 1, 8);
-    List<String> choices = asList("1");
+    List<Integer> moves = asList(0, 1);
+    List<String> choices = asList(HUMAN_VS_HUMAN);
     display = new FakeDisplay(moves, choices);
-    Board board = new Board();
-    game = new Game(board, display);
+    game = new Game(display);
     game.setTwoPlayers();
   }
 
@@ -31,17 +31,14 @@ public class GameTest {
   public void bothPlayersMakeMove() {
     game.nextPlayerMakesMove();
     game.nextPlayerMakesMove();
-    game.nextPlayerMakesMove();
-    List<String> resultedBoard = asList("X", "O", "",
-                                        "" , "" , "",
-                                        "" , "" , "X");
 
-    assertThat(game.getBoardGrid(), equalTo(resultedBoard));
+    assertThat(game.valueInPosition(0), is("X"));
+    assertThat(game.valueInPosition(1), is("O"));
   }
 
   @Test
   public void raisesExceptionGivenInvalidMove() {
-    display.setMoves(asList(10));
+    display.setMoves(asList(INVALID_MOVE));
     game.nextPlayerMakesMove();
 
     assertThat(display.showedInvalidMoveMessage(), is(true));
@@ -50,14 +47,10 @@ public class GameTest {
 
   @Test
   public void samePlayerGoesAgainIfMoveInvalid() {
-    display.setMoves(asList(10, 0));
+    display.setMoves(asList(INVALID_MOVE));
     game.nextPlayerMakesMove();
-    game.nextPlayerMakesMove();
-    List<String> resultedBoard = asList("X", "", "",
-                                        "" , "", "",
-                                        "" , "", "");
 
-    assertThat(game.getBoardGrid(), equalTo(resultedBoard));
+    assertThat(game.markThatGoesNext(), is("X"));
   }
 
   @Test
@@ -93,7 +86,7 @@ public class GameTest {
 
   @Test
   public void getValidGameChoiceFromDisplay() {
-    display.setGameChoices(asList("1"));
+    display.setGameChoices(asList(HUMAN_VS_HUMAN));
     game.setTwoPlayers();
 
     assertThat(display.gotValidChoice(), is(true));
@@ -101,9 +94,8 @@ public class GameTest {
 
   @Test
   public void playsTheGameUntilOver() {
-    Board board = new Board();
-    FakeDisplay display = createDisplay(winningMoves(), asList("1"));
-    Game game = new Game(board, display);
+    FakeDisplay display = createDisplay(winningMoves(), asList(HUMAN_VS_HUMAN));
+    Game game = new Game(display);
     game.start();
 
     assertThat(game.isOver(), is(true));
@@ -111,7 +103,7 @@ public class GameTest {
 
   @Test
   public void getsBoardSizeFromDisplay() {
-    FakeDisplay display = createDisplay(winningMoves(), asList("1"));
+    FakeDisplay display = createDisplay(winningMoves(), asList(HUMAN_VS_HUMAN));
     new Game(display);
 
     assertTrue(display.gotBoardChoice());
@@ -123,7 +115,7 @@ public class GameTest {
 
   private void setMovesAndGameChoice() {
     display.setMoves(winningMoves());
-    display.setGameChoices(asList("1"));
+    display.setGameChoices(asList(HUMAN_VS_HUMAN));
   }
 
   private List<Integer> winningMoves() {
