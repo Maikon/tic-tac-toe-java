@@ -1,11 +1,11 @@
 package ttt;
 
 public class ComputerPlayer implements Player {
-  public static final double INITIAL_VALUE = 10.0;
-  public static final int STARTING_DEPTH = 7;
-  public static final int END_DEPTH = 0;
-  public static final int SCORE_FOR_DRAW = 0;
-  public static final int DEFAULT_BEST_MOVE = -1;
+  private static final double INITIAL_VALUE = 10.0;
+  private static final int STARTING_DEPTH = 7;
+  private static final int END_DEPTH = 0;
+  private static final int SCORE_FOR_DRAW = 0;
+  private static final int DEFAULT_BEST_MOVE = -1;
 
   @Override
   public Board makeMove(Board board) {
